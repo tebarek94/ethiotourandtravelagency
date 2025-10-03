@@ -215,7 +215,9 @@ const PackageCard: React.FC<PackageCardProps> = ({ package: pkg }) => {
         <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1">
           <div className="flex items-center space-x-1">
             <Star size={16} className="text-yellow-500 fill-current" />
-            <span className="text-sm font-semibold">{pkg.rating.toFixed(1)}</span>
+            <span className="text-sm font-semibold">
+              {typeof pkg.rating === 'number' ? pkg.rating.toFixed(1) : '4.5'}
+            </span>
           </div>
         </div>
         <div className="absolute top-4 left-4">

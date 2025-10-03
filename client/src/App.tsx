@@ -18,9 +18,11 @@ import Profile from './pages/Profile';
 import Bookings from './pages/Bookings';
 import BookingForm from './pages/BookingForm';
 import NotFound from './pages/NotFound';
+import AdminDashboard from './pages/AdminDashboard';
 
 // Protected Route Component
 import ProtectedRoute from './components/ProtectedRoute';
+import AdminRoute from './components/AdminRoute';
 
 function App() {
   return (
@@ -62,6 +64,16 @@ function App() {
               <ProtectedRoute>
                 <Layout><BookingForm /></Layout>
               </ProtectedRoute>
+            } 
+          />
+          
+          {/* Admin Routes */}
+          <Route 
+            path="/admin" 
+            element={
+              <AdminRoute>
+                <AdminDashboard />
+              </AdminRoute>
             } 
           />
           

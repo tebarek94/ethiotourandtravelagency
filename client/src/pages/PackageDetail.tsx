@@ -1,5 +1,5 @@
-import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { 
   Star, 
   Calendar, 
@@ -8,15 +8,31 @@ import {
   CheckCircle,
   ArrowRight,
   Heart,
-  Share2
+  Share2,
+  ArrowLeft,
+  Clock,
+  Shield,
+  Plane,
+  Hotel,
+  Car,
+  Utensils,
+  Wifi,
+  Phone,
+  Mail
 } from 'lucide-react';
 import { useApi } from '../hooks/useApi';
 import { packagesAPI } from '../services/api';
 import { formatCurrency, getPackageDurationDisplay, getPackageTypeDisplayName } from '../utils/helpers';
+import { useAuth } from '../contexts/AuthContext';
+import toast from 'react-hot-toast';
 
 const PackageDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+  const { user } = useAuth();
   const packageId = id ? parseInt(id) : 0;
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [selectedTab, setSelectedTab] = useState('overview');
 
   const { data: packageData, loading, error } = useApi(
     () => packagesAPI.getById(packageId),
@@ -47,15 +63,40 @@ const PackageDetail: React.FC = () => {
 
   const pkg = packageData;
 
+  const handleBookNow = () => {
+    if (!user) {
+      toast.error('Please login to book this package');
+      navigate('/login');
+      return;
+    }
+    navigate(`/booking/${pkg.package_id}`);
+  };
+
+  const handleFavorite = () => {
+    setIsFavorite(!isFavorite);
+    toast.success(isFavorite ? 'Removed from favorites' : 'Added to favorites');
+  };
+
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: pkg.name,
+        text: `Check out this amazing Umrah package: ${pkg.name}`,
+        url: window.location.href
+      });
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+      toast.success('Link copied to clipboard');
+    }
+  };
+
   const features = [
-    'Visa processing and documentation',
-    'Round-trip flights from Ethiopia',
-    'Hotels near Haram (Makkah & Madinah)',
-    'Ground transportation',
-    'Spiritual guidance and support',
-    '24/7 customer support',
-    'Travel insurance included',
-    'Group or individual options'
+    { icon: Plane, title: 'Flight Tickets', description: 'Round-trip flights included' },
+    { icon: Hotel, title: 'Hotel Near Haram', description: 'Premium accommodation' },
+    { icon: Car, title: 'Ground Transport', description: 'Airport transfers & local transport' },
+    { icon: Utensils, title: 'Meals', description: 'Daily breakfast included' },
+    { icon: Wifi, title: 'WiFi', description: 'Complimentary internet access' },
+    { icon: Shield, title: 'Travel Insurance', description: 'Comprehensive coverage' }
   ];
 
   const itinerary = [
@@ -91,6 +132,34 @@ const PackageDetail: React.FC = () => {
       {/* Header */}
       <section className="bg-gradient-primary py-16">
         <div className="container-custom text-white">
+          <div className="flex items-center justify-between mb-4">
+            <button
+              onClick={() => navigate(-1)}
+              className="flex items-center space-x-2 text-gray-200 hover:text-white transition-colors"
+            >
+              <ArrowLeft size={20} />
+              <span>Back</span>
+            </button>
+            <div className="flex items-center space-x-4">
+              <button
+                onClick={handleFavorite}
+                className={`p-2 rounded-lg transition-colors ${
+                  isFavorite 
+                    ? 'bg-red-500/20 text-red-300' 
+                    : 'bg-white/10 text-gray-200 hover:bg-white/20'
+                }`}
+              >
+                <Heart size={20} className={isFavorite ? 'fill-current' : ''} />
+              </button>
+              <button
+                onClick={handleShare}
+                className="p-2 rounded-lg bg-white/10 text-gray-200 hover:bg-white/20 transition-colors"
+              >
+                <Share2 size={20} />
+              </button>
+            </div>
+          </div>
+          
           <div className="flex items-center space-x-2 text-sm mb-4">
             <Link to="/" className="hover:text-secondary-300 transition-colors duration-200">
               Home
@@ -111,7 +180,9 @@ const PackageDetail: React.FC = () => {
                 </span>
                 <div className="flex items-center space-x-1">
                   <Star size={20} className="text-yellow-400 fill-current" />
-                  <span className="text-lg font-semibold">{pkg.rating.toFixed(1)}</span>
+                  <span className="text-lg font-semibold">
+                    {typeof pkg.rating === 'number' ? pkg.rating.toFixed(1) : '4.5'}
+                  </span>
                 </div>
               </div>
               
@@ -147,13 +218,13 @@ const PackageDetail: React.FC = () => {
                   </div>
                   <div className="text-gray-300">per person</div>
                 </div>
-                <Link
-                  to={`/booking/${pkg.package_id}`}
+                <button
+                  onClick={handleBookNow}
                   className="btn-secondary w-full inline-flex items-center justify-center space-x-2"
                 >
                   <Calendar size={20} />
                   <span>Book Now</span>
-                </Link>
+                </button>
               </div>
             </div>
           </div>
@@ -188,11 +259,18 @@ const PackageDetail: React.FC = () => {
               {/* Features */}
               <div className="mb-12">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">What's Included</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {features.map((feature, index) => (
-                    <div key={index} className="flex items-start space-x-3">
-                      <CheckCircle size={20} className="text-green-500 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">{feature}</span>
+                    <div key={index} className="bg-white rounded-xl shadow-lg p-6 text-center">
+                      <div className="w-16 h-16 bg-primary-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <feature.icon size={32} className="text-primary-600" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                        {feature.title}
+                      </h3>
+                      <p className="text-gray-600">
+                        {feature.description}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -243,25 +321,35 @@ const PackageDetail: React.FC = () => {
                     <span className="text-gray-600">Rating</span>
                     <div className="flex items-center space-x-1">
                       <Star size={16} className="text-yellow-400 fill-current" />
-                      <span className="font-medium">{pkg.rating.toFixed(1)}</span>
+                      <span className="font-medium">
+                        {typeof pkg.rating === 'number' ? pkg.rating.toFixed(1) : '4.5'}
+                      </span>
                     </div>
                   </div>
                 </div>
                 
-                <Link
-                  to={`/booking/${pkg.package_id}`}
+                <button
+                  onClick={handleBookNow}
                   className="btn-primary w-full inline-flex items-center justify-center space-x-2 mb-4"
                 >
                   <Calendar size={20} />
                   <span>Book This Package</span>
-                </Link>
+                </button>
                 
                 <div className="flex space-x-2">
-                  <button className="btn-outline flex-1 inline-flex items-center justify-center space-x-2">
-                    <Heart size={16} />
-                    <span>Save</span>
+                  <button 
+                    onClick={handleFavorite}
+                    className={`btn-outline flex-1 inline-flex items-center justify-center space-x-2 ${
+                      isFavorite ? 'border-red-500 text-red-600 hover:bg-red-50' : ''
+                    }`}
+                  >
+                    <Heart size={16} className={isFavorite ? 'fill-current' : ''} />
+                    <span>{isFavorite ? 'Saved' : 'Save'}</span>
                   </button>
-                  <button className="btn-outline flex-1 inline-flex items-center justify-center space-x-2">
+                  <button 
+                    onClick={handleShare}
+                    className="btn-outline flex-1 inline-flex items-center justify-center space-x-2"
+                  >
                     <Share2 size={16} />
                     <span>Share</span>
                   </button>
@@ -282,7 +370,7 @@ const PackageDetail: React.FC = () => {
                     className="flex items-center space-x-3 text-primary-600 hover:text-primary-700 transition-colors duration-200"
                   >
                     <div className="w-8 h-8 bg-primary-100 rounded-lg flex items-center justify-center">
-                      <span className="text-sm font-semibold">📞</span>
+                      <Phone size={16} className="text-primary-600" />
                     </div>
                     <span>+251 986 111 333</span>
                   </a>
@@ -291,7 +379,7 @@ const PackageDetail: React.FC = () => {
                     className="flex items-center space-x-3 text-primary-600 hover:text-primary-700 transition-colors duration-200"
                   >
                     <div className="w-8 h-8 bg-primary-100 rounded-lg flex items-center justify-center">
-                      <span className="text-sm font-semibold">✉️</span>
+                      <Mail size={16} className="text-primary-600" />
                     </div>
                     <span>umrah@zadtravelagency.com</span>
                   </a>

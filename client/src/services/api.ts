@@ -195,4 +195,57 @@ export const usersAPI = {
   },
 };
 
+// Admin API
+export const adminAPI = {
+  getDashboardStats: async (): Promise<ApiResponse<any>> => {
+    const response: AxiosResponse<ApiResponse<any>> = await api.get('/admin/dashboard/stats');
+    return response.data;
+  },
+
+  getAllUsers: async (params: { page?: number; limit?: number; search?: string; role?: string }): Promise<ApiResponse<any>> => {
+    const response: AxiosResponse<ApiResponse<any>> = await api.get('/admin/users', { params });
+    return response.data;
+  },
+
+  updateUserRole: async (userId: number, role: string): Promise<ApiResponse<any>> => {
+    const response: AxiosResponse<ApiResponse<any>> = await api.put(`/admin/users/${userId}/role`, { role });
+    return response.data;
+  },
+
+  getAllBookings: async (params: { page?: number; limit?: number; status?: string; search?: string }): Promise<ApiResponse<any>> => {
+    const response: AxiosResponse<ApiResponse<any>> = await api.get('/admin/bookings', { params });
+    return response.data;
+  },
+
+  updateBookingStatus: async (bookingId: number, status: string): Promise<ApiResponse<any>> => {
+    const response: AxiosResponse<ApiResponse<any>> = await api.put(`/admin/bookings/${bookingId}/status`, { status });
+    return response.data;
+  },
+
+  getAllPackages: async (params: { page?: number; limit?: number; type?: string; search?: string }): Promise<ApiResponse<any>> => {
+    const response: AxiosResponse<ApiResponse<any>> = await api.get('/admin/packages', { params });
+    return response.data;
+  },
+
+  getAllInquiries: async (params: { page?: number; limit?: number; status?: string; search?: string }): Promise<ApiResponse<any>> => {
+    const response: AxiosResponse<ApiResponse<any>> = await api.get('/admin/inquiries', { params });
+    return response.data;
+  },
+
+  updateInquiryStatus: async (inquiryId: number, status: string): Promise<ApiResponse<any>> => {
+    const response: AxiosResponse<ApiResponse<any>> = await api.put(`/admin/inquiries/${inquiryId}/status`, { status });
+    return response.data;
+  },
+
+  getAnalytics: async (period: string = '30d'): Promise<ApiResponse<any>> => {
+    const response: AxiosResponse<ApiResponse<any>> = await api.get('/admin/analytics', { params: { period } });
+    return response.data;
+  },
+
+  getRevenueReport: async (params: { startDate?: string; endDate?: string; groupBy?: string }): Promise<ApiResponse<any>> => {
+    const response: AxiosResponse<ApiResponse<any>> = await api.get('/admin/revenue', { params });
+    return response.data;
+  },
+};
+
 export default api;

@@ -106,63 +106,103 @@ const Home: React.FC = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
+      {/* Hero Section with Animated Video */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-900 via-primary-800 to-secondary-800">
-          <div className="absolute inset-0 hero-pattern opacity-20"></div>
+        {/* Video Background */}
+        <div className="absolute inset-0 w-full h-full">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover video-bg"
+            poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 1080'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23059669;stop-opacity:1' /%3E%3Cstop offset='50%25' style='stop-color:%230d4f3c;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%230a3d2e;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1920' height='1080' fill='url(%23grad)'/%3E%3C/svg%3E"
+          >
+            {/* Sample video sources - replace with your own Umrah/travel videos */}
+            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4" />
+            <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4" />
+          </video>
+          
+          {/* Video Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-primary-900/85 via-primary-800/75 to-secondary-800/85"></div>
+          <div className="absolute inset-0 bg-black/20"></div>
+        </div>
+        
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Floating particles with different animations */}
+          <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-white/20 rounded-full animate-particle" style={{animationDelay: '0s'}}></div>
+          <div className="absolute top-1/3 right-1/3 w-1 h-1 bg-secondary-300/40 rounded-full animate-particle" style={{animationDelay: '1s'}}></div>
+          <div className="absolute bottom-1/3 left-1/3 w-3 h-3 bg-white/10 rounded-full animate-particle" style={{animationDelay: '2s'}}></div>
+          <div className="absolute top-2/3 right-1/4 w-1.5 h-1.5 bg-secondary-300/30 rounded-full animate-particle" style={{animationDelay: '3s'}}></div>
+          <div className="absolute top-1/2 left-1/6 w-2 h-2 bg-white/15 rounded-full animate-particle" style={{animationDelay: '4s'}}></div>
+          <div className="absolute bottom-1/4 right-1/6 w-1 h-1 bg-secondary-300/35 rounded-full animate-particle" style={{animationDelay: '5s'}}></div>
+          
+          {/* Geometric shapes */}
+          <div className="absolute top-20 left-20 w-16 h-16 border border-white/10 rotate-45 animate-spin" style={{animationDuration: '20s'}}></div>
+          <div className="absolute bottom-20 right-20 w-12 h-12 border border-secondary-300/20 rounded-full animate-pulse"></div>
+          <div className="absolute top-1/2 right-20 w-8 h-8 border border-white/15 rotate-12 animate-spin" style={{animationDuration: '15s', animationDirection: 'reverse'}}></div>
         </div>
         
         {/* Content */}
         <div className="relative z-10 container-custom text-center text-white">
-          <div className="max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-shadow-lg">
-              Your Spiritual Journey to the{' '}
-              <span className="text-secondary-300">Holy Cities</span>
-            </h1>
+          <div className="max-w-5xl mx-auto">
+            {/* Animated title */}
+            <div className="mb-8">
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-shadow-lg leading-tight">
+                <span className="block animate-fade-in-up" style={{animationDelay: '0.2s'}}>
+                  Your Spiritual Journey
+                </span>
+                <span className="block text-secondary-300 animate-fade-in-up" style={{animationDelay: '0.4s'}}>
+                  to the Holy Cities
+                </span>
+              </h1>
+            </div>
             
-            <p className="text-xl md:text-2xl mb-8 text-gray-200 leading-relaxed">
+            {/* Animated subtitle */}
+            <p className="text-xl md:text-2xl lg:text-3xl mb-12 text-gray-200 leading-relaxed max-w-4xl mx-auto animate-fade-in-up" style={{animationDelay: '0.6s'}}>
               Complete Umrah packages with visa, flights, hotels near Haram, 
               ground transport, and spiritual guidance for a blessed journey.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+            {/* Animated buttons */}
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16 animate-fade-in-up" style={{animationDelay: '0.8s'}}>
               <Link
                 to="/packages"
-                className="btn-secondary text-lg px-8 py-4 inline-flex items-center space-x-2"
+                className="btn-secondary text-lg px-10 py-5 inline-flex items-center space-x-3 transform hover:scale-105 transition-all duration-300 shadow-2xl"
               >
-                <Calendar size={20} />
+                <Calendar size={24} />
                 <span>Book Umrah</span>
               </Link>
               <Link
                 to="/about"
-                className="btn-outline text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-primary-600"
+                className="btn-outline text-lg px-10 py-5 border-2 border-white text-white hover:bg-white hover:text-primary-600 transform hover:scale-105 transition-all duration-300"
               >
                 Learn More
               </Link>
             </div>
             
-            {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
+            {/* Animated stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto animate-fade-in-up" style={{animationDelay: '1s'}}>
               {stats.map((stat, index) => (
-                <div key={index} className="text-center">
-                  <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mx-auto mb-2">
-                    <stat.icon size={24} className="text-secondary-300" />
+                <div key={index} className="text-center group">
+                  <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-white/30 transition-all duration-300 group-hover:scale-110">
+                    <stat.icon size={28} className="text-secondary-300" />
                   </div>
-                  <div className="text-2xl md:text-3xl font-bold text-secondary-300">
+                  <div className="text-3xl md:text-4xl font-bold text-secondary-300 mb-2">
                     {stat.number}
                   </div>
-                  <div className="text-sm text-gray-300">{stat.label}</div>
+                  <div className="text-sm md:text-base text-gray-300 font-medium">{stat.label}</div>
                 </div>
               ))}
             </div>
           </div>
         </div>
         
-        {/* Scroll Indicator */}
+        {/* Animated scroll indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>
+          <div className="w-8 h-12 border-2 border-white/60 rounded-full flex justify-center backdrop-blur-sm">
+            <div className="w-1 h-4 bg-white/80 rounded-full mt-2 animate-pulse"></div>
           </div>
         </div>
       </section>
@@ -240,7 +280,9 @@ const Home: React.FC = () => {
                     <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1">
                       <div className="flex items-center space-x-1">
                         <Star size={16} className="text-yellow-500 fill-current" />
-                        <span className="text-sm font-semibold">{pkg.rating.toFixed(1)}</span>
+                        <span className="text-sm font-semibold">
+                          {typeof pkg.rating === 'number' ? pkg.rating.toFixed(1) : '4.5'}
+                        </span>
                       </div>
                     </div>
                   </div>
