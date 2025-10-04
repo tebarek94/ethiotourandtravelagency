@@ -1,0 +1,512 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "view": "View",
+    "close": "Close",
+    "submit": "Submit",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "packages": "Packages",
+    "destinations": "Destinations",
+    "blog": "Blog",
+    "contact": "Contact",
+    "faq": "FAQ",
+    "login": "Login",
+    "register": "Register",
+    "profile": "Profile",
+    "bookings": "My Bookings",
+    "admin": "Admin",
+    "logout": "Logout"
+  },
+  "auth": {
+    "welcome": "Welcome Back!",
+    "loginPrompt": "Sign in to your account",
+    "registerPrompt": "Create your account",
+    "email": "Email Address",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "name": "Full Name",
+    "phone": "Phone Number",
+    "forgotPassword": "Forgot Password?",
+    "noAccount": "Don't have an account?",
+    "alreadyAccount": "Already have an account?",
+    "loginSuccess": "Logged in successfully!",
+    "registerSuccess": "Registration successful! Please log in.",
+    "invalidCredentials": "Invalid email or password",
+    "emailTaken": "Email already registered"
+  },
+  "booking": {
+    "title": "Book Your Umrah Package",
+    "packageDetails": "Package Details",
+    "travelDate": "Travel Date",
+    "travelers": "Number of Travelers",
+    "contactInfo": "Contact Information",
+    "fullName": "Full Name",
+    "email": "Email",
+    "phone": "Phone Number",
+    "specialRequests": "Special Requests",
+    "uploadDocuments": "Upload Required Documents",
+    "passport": "Passport",
+    "visa": "Visa",
+    "photo": "Photo",
+    "chooseFile": "Choose File",
+    "fileTypes": "Please upload only JPG, PNG, or PDF files",
+    "maxFileSize": "File size must be less than 5MB",
+    "currentDocuments": "Current Documents",
+    "noDocuments": "No documents uploaded yet.",
+    "download": "Download",
+    "remove": "Remove",
+    "confirmBooking": "Confirm Booking",
+    "bookingSuccess": "Booking created successfully!",
+    "bookingError": "Failed to create booking. Please try again.",
+    "totalPrice": "Total Price",
+    "required": "This field is required",
+    "invalidEmail": "Please enter a valid email address",
+    "minTravelers": "Minimum 1 traveler",
+    "invalidDate": "Please select a valid travel date"
+  },
+  "package": {
+    "bookNow": "Book Now",
+    "duration": "Duration",
+    "nights": "Nights",
+    "price": "Price",
+    "type": "Type",
+    "rating": "Rating",
+    "description": "Description",
+    "inclusions": "Inclusions",
+    "itinerary": "Itinerary",
+    "flights": "Flights",
+    "hotels": "Hotels",
+    "transfers": "Transfers",
+    "viewAllPackages": "View All Packages"
+  },
+  "home": {
+    "hero": {
+      "title": "Your Journey to Spiritual Fulfillment",
+      "subtitle": "Experience the sacred pilgrimage of Umrah and Hajj with our trusted travel services",
+      "cta": "Explore Packages"
+    },
+    "features": {
+      "title": "Why Choose Us",
+      "subtitle": "We provide exceptional service for your spiritual journey",
+      "feature1": {
+        "title": "Expert Guidance",
+        "description": "Professional guidance throughout your spiritual journey"
+      },
+      "feature2": {
+        "title": "Quality Accommodation",
+        "description": "Comfortable and convenient lodging arrangements"
+      },
+      "feature3": {
+        "title": "24/7 Support",
+        "description": "Round-the-clock assistance during your pilgrimage"
+      },
+      "feature4": {
+        "title": "Group Travel",
+        "description": "Travel with like-minded individuals in organized groups"
+      }
+    },
+    "packages": {
+      "title": "Featured Packages",
+      "subtitle": "Choose from our carefully curated Umrah and Hajj packages",
+      "viewAll": "View All Packages"
+    },
+    "testimonials": {
+      "title": "What Our Pilgrims Say",
+      "subtitle": "Real experiences from our satisfied customers"
+    },
+    "stats": {
+      "title": "Our Impact",
+      "pilgrims": "Happy Pilgrims",
+      "packages": "Packages",
+      "experience": "Years Experience",
+      "destinations": "Destinations"
+    },
+    "umrahGuide": {
+      "title": "Complete Umrah Guide",
+      "subtitle": "Step-by-step guidance for performing Umrah from Ethiopia to completion. Available in English, Amharic, and Arabic.",
+      "steps": {
+        "step1": {
+          "title": "Pre-Departure Preparation",
+          "description": "Complete documentation, visa processing, and travel preparation with our expert team.",
+          "items": [
+            "Valid passport (minimum 6 months validity)",
+            "Umrah visa (processed by EthioTours)",
+            "Flight tickets and hotel confirmations",
+            "Travel insurance and health requirements"
+          ]
+        },
+        "step2": {
+          "title": "Departure from Ethiopia",
+          "description": "Smooth departure from Bole International Airport with our dedicated assistance.",
+          "items": [
+            "Airport pickup and check-in assistance",
+            "Group coordination and briefing",
+            "Flight departure to Saudi Arabia",
+            "In-flight meal and comfort arrangements"
+          ]
+        },
+        "step3": {
+          "title": "Arrival in Saudi Arabia",
+          "description": "Seamless arrival and transfer to your accommodation near the Haram.",
+          "items": [
+            "Airport reception and immigration clearance",
+            "Transfer to hotel near Masjid al-Haram",
+            "Room check-in and orientation",
+            "Briefing on Umrah procedures and schedule"
+          ]
+        },
+        "step4": {
+          "title": "Performing Umrah",
+          "description": "Complete Umrah rituals with spiritual guidance and support.",
+          "items": [
+            "Ihram preparation and intention",
+            "Tawaf around the Kaaba (7 circuits)",
+            "Sa'i between Safa and Marwah (7 rounds)",
+            "Hair cutting and Ihram removal"
+          ]
+        },
+        "step5": {
+          "title": "Visit to Madinah",
+          "description": "Journey to the Prophet's city for prayers and spiritual reflection.",
+          "items": [
+            "Transfer to Madinah by bus or flight",
+            "Hotel accommodation near Masjid an-Nabawi",
+            "Prayers at the Prophet's Mosque",
+            "Visit to historical Islamic sites"
+          ]
+        },
+        "step6": {
+          "title": "Return Journey",
+          "description": "Safe return to Ethiopia with memories of a blessed journey.",
+          "items": [
+            "Final prayers and farewell",
+            "Transfer to airport for departure",
+            "Flight back to Ethiopia",
+            "Airport reception and home transfer"
+          ]
+        }
+      }
+    }
+  },
+  "packages": {
+    "title": "Our Packages",
+    "subtitle": "Choose the perfect package for your spiritual journey",
+    "filter": {
+      "all": "All Packages",
+      "umrah": "Umrah",
+      "hajj": "Hajj",
+      "tour": "Tour",
+      "custom": "Custom"
+    },
+    "sort": {
+      "title": "Sort by",
+      "price": "Price",
+      "duration": "Duration",
+      "rating": "Rating",
+      "newest": "Newest"
+    },
+    "search": {
+      "placeholder": "Search packages...",
+      "noResults": "No packages found matching your criteria"
+    },
+    "filters": {
+      "priceRange": "Price Range",
+      "clearFilters": "Clear Filters"
+    },
+    "results": {
+      "showing": "Showing",
+      "of": "of",
+      "packages": "packages",
+      "noPackagesFound": "No packages found",
+      "tryAdjusting": "Try adjusting your search criteria or filters."
+    },
+    "details": {
+      "duration": "Duration",
+      "nights": "Nights",
+      "price": "Price",
+      "rating": "Rating",
+      "type": "Type",
+      "description": "Description",
+      "includes": "What's Included",
+      "excludes": "What's Not Included",
+      "itinerary": "Itinerary",
+      "bookNow": "Book Now",
+      "viewDetails": "View Details",
+      "from": "From",
+      "perPerson": "per person",
+      "groupSize": "Group Size",
+      "departure": "Departure",
+      "return": "Return"
+    }
+  },
+  "about": {
+    "title": "About EthioTours",
+    "subtitle": "Your trusted partner for spiritual journeys",
+    "mission": {
+      "title": "Our Mission",
+      "description": "To provide exceptional Umrah and Hajj services that enable pilgrims to fulfill their spiritual obligations with comfort, safety, and peace of mind."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "description": "To be the leading travel agency in Ethiopia, recognized for our commitment to excellence and our dedication to serving the Muslim community."
+    },
+    "values": {
+      "title": "Our Values",
+      "subtitle": "The principles that guide everything we do",
+      "integrity": {
+        "title": "Integrity",
+        "description": "We conduct all our business with honesty, transparency, and ethical practices, ensuring trust in every interaction."
+      },
+      "compassion": {
+        "title": "Compassion",
+        "description": "We understand the spiritual significance of your journey and provide care and support throughout your pilgrimage experience."
+      },
+      "excellence": {
+        "title": "Excellence",
+        "description": "We strive for the highest standards in service delivery, continuously improving to exceed your expectations."
+      },
+      "reliability": {
+        "title": "Reliability",
+        "description": "You can count on us to deliver what we promise, with consistent quality and dependable support every step of the way."
+      }
+    },
+    "team": {
+      "title": "Our Team",
+      "subtitle": "Meet the dedicated professionals behind EthioTours"
+    },
+    "story": {
+      "title": "Our Story",
+      "subtitle": "A journey of faith and service",
+      "content": "Founded with a deep understanding of the spiritual significance of Umrah and Hajj, EthioTours has been serving the Ethiopian Muslim community for years. Our team combines extensive travel industry experience with genuine care for our pilgrims' spiritual needs."
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Get in touch with our team for any questions or assistance",
+    "form": {
+      "name": "Full Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "subject": "Subject",
+      "message": "Message",
+      "send": "Send Message",
+      "success": "Message sent successfully!",
+      "error": "Failed to send message. Please try again."
+    },
+    "info": {
+      "address": "123 Main Street, Addis Ababa, Ethiopia",
+      "phone": "+251 912 345 678",
+      "email": "info@ethiotours.com",
+      "hours": "Mon-Fri: 8AM-6PM, Sat: 9AM-2PM"
+    }
+  },
+  "footer": {
+    "company": "EthioTours",
+    "description": "Your trusted partner for Umrah and Hajj pilgrimage services",
+    "quickLinks": "Quick Links",
+    "contactInfo": "Contact Information",
+    "followUs": "Follow Us",
+    "allRightsReserved": "All rights reserved",
+    "ourServices": "Our Services",
+    "faq": "FAQ",
+    "normalUmrah": "Normal Umrah Package",
+    "vipUmrah": "VIP Umrah Package",
+    "vvipUmrah": "VVIP Umrah Package",
+    "customPackages": "Custom Packages",
+    "helpCenter": "Help Center",
+    "travelGuide": "Travel Guide",
+    "visaInfo": "Visa Information",
+    "support247": "24/7 Support",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "refundPolicy": "Refund Policy",
+    "disclaimer": "Disclaimer"
+  },
+  "language": {
+    "select": "Select Language",
+    "english": "English",
+    "arabic": "العربية",
+    "amharic": "አማርኛ",
+    "oromo": "Afaan Oromoo"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Find answers to common questions about our Umrah and Hajj packages",
+    "categories": {
+      "general": {
+        "title": "General Questions"
+      },
+      "booking": {
+        "title": "Booking & Reservations"
+      },
+      "travel": {
+        "title": "Travel & Transportation"
+      },
+      "payment": {
+        "title": "Payment & Pricing"
+      },
+      "safety": {
+        "title": "Safety & Security"
+      },
+      "support": {
+        "title": "Customer Support"
+      }
+    },
+    "general": {
+      "q1": {
+        "question": "What is the difference between Umrah and Hajj?",
+        "answer": "Umrah is a voluntary pilgrimage that can be performed at any time of the year, while Hajj is an obligatory pilgrimage that must be performed during specific days in the Islamic month of Dhul Hijjah. Umrah involves fewer rituals and can be completed in a few hours, while Hajj takes several days and involves more complex rituals."
+      },
+      "q2": {
+        "question": "Do I need a visa to travel to Saudi Arabia?",
+        "answer": "Yes, you need a valid Umrah or Hajj visa to enter Saudi Arabia. We handle the visa application process for all our customers, including document preparation, submission, and tracking. The visa is typically valid for 30 days and allows multiple entries."
+      },
+      "q3": {
+        "question": "What documents do I need for Umrah?",
+        "answer": "You need a valid passport (minimum 6 months validity), passport-sized photos, vaccination certificates, and proof of accommodation. We provide a complete checklist and assist with document preparation to ensure a smooth application process."
+      },
+      "q4": {
+        "question": "Is travel insurance included in the package?",
+        "answer": "Yes, comprehensive travel insurance is included in all our packages. This covers medical emergencies, trip cancellation, lost luggage, and other travel-related incidents. We ensure you're fully protected during your spiritual journey."
+      }
+    },
+    "booking": {
+      "q1": {
+        "question": "How far in advance should I book my Umrah package?",
+        "answer": "We recommend booking at least 2-3 months in advance to secure the best prices and availability. During peak seasons (Ramadan, Hajj period), we suggest booking 4-6 months ahead as packages sell out quickly."
+      },
+      "q2": {
+        "question": "Can I modify or cancel my booking?",
+        "answer": "Yes, you can modify your booking up to 30 days before departure. Cancellation policies vary by package type and timing. We offer flexible options and will work with you to find the best solution for any changes needed."
+      },
+      "q3": {
+        "question": "What is included in the package price?",
+        "answer": "Our packages include round-trip flights, accommodation near the Haram, ground transportation, visa processing, travel insurance, and 24/7 support. Some packages also include meals, guided tours, and additional services. Check the specific package details for a complete list."
+      },
+      "q4": {
+        "question": "Do you offer group discounts?",
+        "answer": "Yes, we offer special group rates for families and groups of 10 or more people. Group bookings also include additional benefits like dedicated group coordinators and customized itineraries. Contact us for a personalized quote."
+      }
+    },
+    "travel": {
+      "q1": {
+        "question": "What airlines do you use for flights?",
+        "answer": "We work with reputable airlines including Ethiopian Airlines, Saudi Airlines, and other major carriers. Flight options vary by package and season. We ensure comfortable and reliable air travel with good connections and reasonable layover times."
+      },
+      "q2": {
+        "question": "Where will I stay during my Umrah?",
+        "answer": "We provide accommodation in hotels located within walking distance of the Haram in Makkah and the Prophet's Mosque in Madinah. Our hotels are carefully selected for comfort, cleanliness, and proximity to the holy sites."
+      },
+      "q3": {
+        "question": "How do I get from the airport to my hotel?",
+        "answer": "We provide airport pickup and drop-off services for all our customers. Our representatives will meet you at the airport and ensure safe transportation to your hotel. This service is included in all package prices."
+      },
+      "q4": {
+        "question": "What if I miss my flight?",
+        "answer": "If you miss your flight due to circumstances beyond your control, we will assist you in rebooking on the next available flight. Our 24/7 support team is always available to help with any travel emergencies or changes."
+      }
+    },
+    "payment": {
+      "q1": {
+        "question": "What payment methods do you accept?",
+        "answer": "We accept bank transfers, credit cards (Visa, MasterCard), mobile payments, and cash payments at our office. We also offer installment payment plans for certain packages to make your journey more affordable."
+      },
+      "q2": {
+        "question": "When is payment due?",
+        "answer": "A deposit of 30-50% is required at the time of booking, with the remaining balance due 30 days before departure. For last-minute bookings, full payment may be required immediately."
+      },
+      "q3": {
+        "question": "Are there any hidden fees?",
+        "answer": "No, we believe in transparent pricing. All costs are clearly listed in your package details. The only additional costs might be personal expenses, shopping, or optional services you choose to add."
+      },
+      "q4": {
+        "question": "Do you offer refunds?",
+        "answer": "Refund policies depend on the timing of cancellation and package type. We offer partial refunds for cancellations made well in advance. Full details of our refund policy are provided at the time of booking."
+      }
+    },
+    "safety": {
+      "q1": {
+        "question": "Is it safe to travel to Saudi Arabia?",
+        "answer": "Yes, Saudi Arabia is generally safe for pilgrims. The government has extensive security measures in place, especially around the holy sites. We also provide safety briefings and emergency contact information to all our customers."
+      },
+      "q2": {
+        "question": "What health precautions should I take?",
+        "answer": "We recommend getting necessary vaccinations, bringing any required medications, and maintaining good hygiene. We provide a comprehensive health checklist and can assist with medical requirements for your visa application."
+      },
+      "q3": {
+        "question": "What should I do in case of an emergency?",
+        "answer": "We provide 24/7 emergency support with local contacts in Saudi Arabia. Our team can assist with medical emergencies, lost documents, or any other urgent situations. Emergency contact numbers are provided before departure."
+      },
+      "q4": {
+        "question": "Are there any travel restrictions I should know about?",
+        "answer": "Travel restrictions may vary based on current regulations. We stay updated with all requirements and will inform you of any restrictions or requirements before your travel. This includes health requirements, dress codes, and behavioral guidelines."
+      }
+    },
+    "support": {
+      "q1": {
+        "question": "How can I contact customer support?",
+        "answer": "You can reach us by phone at +251 912 345 678, email at support@ethiotours.com, or visit our office in Addis Ababa. We also provide WhatsApp support for quick assistance and updates."
+      },
+      "q2": {
+        "question": "What are your office hours?",
+        "answer": "Our office is open Monday to Friday from 8:00 AM to 6:00 PM, and Saturday from 9:00 AM to 2:00 PM. We also provide 24/7 emergency support for customers who are traveling."
+      },
+      "q3": {
+        "question": "Do you provide pre-travel orientation?",
+        "answer": "Yes, we conduct comprehensive pre-travel orientations covering visa requirements, packing lists, travel procedures, and what to expect during your journey. These sessions help ensure you're fully prepared for your spiritual journey."
+      },
+      "q4": {
+        "question": "Can I get assistance with special needs?",
+        "answer": "Absolutely. We provide special assistance for elderly travelers, people with disabilities, and those with medical conditions. We can arrange wheelchair access, special meals, and additional support as needed."
+      }
+    },
+    "quickHelp": {
+      "phone": {
+        "title": "Call Us",
+        "description": "Speak directly with our travel experts"
+      },
+      "email": {
+        "title": "Email Us",
+        "description": "Send us your questions anytime"
+      },
+      "hours": {
+        "title": "Office Hours",
+        "description": "Visit us during business hours",
+        "time": "Mon-Fri: 8AM-6PM, Sat: 9AM-2PM"
+      }
+    },
+    "stillNeedHelp": {
+      "title": "Still Need Help?",
+      "description": "Can't find the answer you're looking for? Our dedicated support team is here to help you with any questions or concerns about your Umrah or Hajj journey.",
+      "call": "Call Support",
+      "email": "Email Support"
+    }
+  },
+  "validation": {
+    "required": "This field is required",
+    "email": "Please enter a valid email address",
+    "phone": "Please enter a valid phone number",
+    "minLength": "Must be at least {{count}} characters",
+    "maxLength": "Must be no more than {{count}} characters",
+    "passwordMatch": "Passwords do not match",
+    "fileSize": "File size must be less than {{size}}",
+    "fileType": "Invalid file type. Allowed types: {{types}}"
+  }
+}

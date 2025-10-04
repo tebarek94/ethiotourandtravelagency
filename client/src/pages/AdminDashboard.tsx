@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
 import { adminAPI } from '../services/api';
 import { 
@@ -61,6 +62,7 @@ interface Inquiry {
 }
 
 const AdminDashboard: React.FC = () => {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const [activeTab, setActiveTab] = useState('dashboard');
   const [stats, setStats] = useState<DashboardStats | null>(null);
@@ -190,7 +192,7 @@ const AdminDashboard: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
+              <h1 className="text-3xl font-bold text-gray-900">{t('navigation.adminDashboard')}</h1>
               <p className="text-gray-600">Welcome back, {user?.name}</p>
             </div>
             <div className="flex space-x-4">

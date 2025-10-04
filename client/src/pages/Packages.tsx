@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { 
   Star, 
   MapPin, 
@@ -13,6 +14,7 @@ import { formatCurrency, getPackageDurationDisplay, getPackageTypeDisplayName } 
 import { Package } from '../types';
 
 const Packages: React.FC = () => {
+  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedType, setSelectedType] = useState<string>('all');
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 500000]);
@@ -21,11 +23,11 @@ const Packages: React.FC = () => {
   const { data: packages, loading } = useApi(() => packagesAPI.getAll());
 
   const packageTypes = [
-    { value: 'all', label: 'All Packages' },
-    { value: 'umrah', label: 'Umrah' },
-    { value: 'hajj', label: 'Hajj' },
-    { value: 'tour', label: 'Tour' },
-    { value: 'custom', label: 'Custom' },
+    { value: 'all', label: t('packages.filter.all') },
+    { value: 'umrah', label: t('packages.filter.umrah') },
+    { value: 'hajj', label: t('packages.filter.hajj') },
+    { value: 'tour', label: t('packages.filter.tour') },
+    { value: 'custom', label: t('packages.filter.custom') },
   ];
 
   const filteredPackages = packages?.filter((pkg) => {
@@ -46,14 +48,13 @@ const Packages: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <section className="bg-gradient-primary py-16">
+      <section className="bg-gradient-primary py-16 mt-16 lg:mt-20">
         <div className="container-custom text-center text-white">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Umrah Packages
+            {t('packages.title')}
           </h1>
           <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-            Choose from our range of Umrah packages designed to meet different needs and budgets, 
-            all ensuring a blessed and comfortable spiritual experience.
+            {t('packages.subtitle')}
           </p>
         </div>
       </section>
@@ -69,7 +70,7 @@ const Packages: React.FC = () => {
               </div>
               <input
                 type="text"
-                placeholder="Search packages..."
+                placeholder={t('packages.search.placeholder')}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="input-field pl-10"
@@ -111,7 +112,7 @@ const Packages: React.FC = () => {
                 {/* Price Range */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Price Range: {formatCurrency(priceRange[0])} - {formatCurrency(priceRange[1])}
+                    {t('packages.filters.priceRange')}: {formatCurrency(priceRange[0])} - {formatCurrency(priceRange[1])}
                   </label>
                   <div className="space-y-2">
                     <input
@@ -142,7 +143,7 @@ const Packages: React.FC = () => {
                     className="btn-outline w-full flex items-center justify-center space-x-2"
                   >
                     <X size={16} />
-                    <span>Clear Filters</span>
+                    <span>{t('packages.filters.clearFilters')}</span>
                   </button>
                 </div>
               </div>
@@ -152,7 +153,7 @@ const Packages: React.FC = () => {
       </section>
 
       {/* Packages Grid */}
-      <section className="section-padding">
+      <section className="py-16 pb-24">
         <div className="container-custom">
           {loading ? (
             <div className="flex justify-center items-center py-12">
@@ -163,13 +164,13 @@ const Packages: React.FC = () => {
               {/* Results Count */}
               <div className="mb-8">
                 <p className="text-gray-600">
-                  Showing {filteredPackages?.length || 0} of {packages?.length || 0} packages
+                  {t('packages.results.showing')} {filteredPackages?.length || 0} {t('packages.results.of')} {packages?.length || 0} {t('packages.results.packages')}
                 </p>
               </div>
 
               {/* Packages Grid */}
               {filteredPackages && filteredPackages.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
                   {filteredPackages.map((pkg) => (
                     <PackageCard key={pkg.package_id} package={pkg} />
                   ))}
@@ -180,16 +181,16 @@ const Packages: React.FC = () => {
                     <Search size={32} className="text-gray-400" />
                   </div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    No packages found
+                    {t('packages.results.noPackagesFound')}
                   </h3>
                   <p className="text-gray-600 mb-4">
-                    Try adjusting your search criteria or filters.
+                    {t('packages.results.tryAdjusting')}
                   </p>
                   <button
                     onClick={clearFilters}
                     className="btn-primary"
                   >
-                    Clear Filters
+                    {t('packages.filters.clearFilters')}
                   </button>
                 </div>
               )}

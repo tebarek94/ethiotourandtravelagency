@@ -1,23 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Calendar, User, ArrowRight } from 'lucide-react';
 import { useApi } from '../hooks/useApi';
 import { articlesAPI } from '../services/api';
 import { formatDate, truncateText } from '../utils/helpers';
 
 const Blog: React.FC = () => {
+  const { t } = useTranslation();
   const { data: articles, loading } = useApi(() => articlesAPI.getAll());
 
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <section className="bg-gradient-primary py-16">
+      <section className="bg-gradient-primary py-16 mt-16 lg:mt-20">
         <div className="container-custom text-center text-white">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Umrah Travel Guide
+            {t('blog.title')}
           </h1>
           <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-            Latest Umrah information, travel tips, and spiritual guidance for your blessed journey to the holy cities.
+            {t('blog.subtitle')}
           </p>
         </div>
       </section>
@@ -66,7 +68,7 @@ const Blog: React.FC = () => {
                       to={`/blog/${article.slug}`}
                       className="btn-outline w-full inline-flex items-center justify-center space-x-2"
                     >
-                      <span>Read More</span>
+                      <span>{t('blog.readMore')}</span>
                       <ArrowRight size={16} />
                     </Link>
                   </div>

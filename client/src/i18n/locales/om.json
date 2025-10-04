@@ -1,0 +1,649 @@
+{
+  "common": {
+    "loading": "Bakka bu'aa jira...",
+    "error": "Dogoggora",
+    "success": "Milkaa'e",
+    "cancel": "Dhabamsi",
+    "save": "Qusadhu",
+    "delete": "Haqu",
+    "edit": "Fooyyeessu",
+    "view": "Agarsiisu",
+    "close": "Cufi",
+    "submit": "Ergi",
+    "back": "Duubatti deebi'i",
+    "next": "Itaana",
+    "previous": "Duraan",
+    "search": "Barbaadi",
+    "filter": "Suuta",
+    "sort": "Sagalee",
+    "yes": "Eeyyee",
+    "no": "Lakki"
+  },
+  "navigation": {
+    "home": "Mana",
+    "about": "Waa'ee keenya",
+    "packages": "Qabiyyee",
+    "destinations": "Bakka deemu",
+    "blog": "Blog",
+    "contact": "Nu qunnamaa",
+    "faq": "Gaaffilee Fooyya'iinsaa",
+    "login": "Seenu",
+    "register": "Galchi",
+    "profile": "Seenaa",
+    "bookings": "Qabiyyee koo",
+    "admin": "Bulchiinsa",
+    "logout": "Ba'i"
+  },
+  "auth": {
+    "login": "Seenu",
+    "register": "Galchi",
+    "logout": "Ba'i",
+    "email": "Email",
+    "password": "Jecha iccitii",
+    "confirmPassword": "Jecha iccitii mirkaneessi",
+    "name": "Maqaa guutuu",
+    "phone": "Lakkoofsi bilbilaa",
+    "forgotPassword": "Jecha iccitii koo dagadhe?",
+    "rememberMe": "Na yaadadhu",
+    "alreadyHaveAccount": "Akkaawuntii jirtaa?",
+    "dontHaveAccount": "Akkaawuntii hin jiruu?",
+    "loginSuccess": "Milkaa'inaan seenne",
+    "registerSuccess": "Akkaawuntii milkaa'inaan uumne",
+    "loginError": "Seenuu hin milkaa'ine",
+    "registerError": "Akkaawuntii uumuu hin milkaa'ine",
+    "invalidCredentials": "Email ykn jecha iccitii dogoggora",
+    "emailRequired": "Email barbaachisa",
+    "passwordRequired": "Jecha iccitii barbaachisa",
+    "nameRequired": "Maqaa barbaachisa",
+    "phoneRequired": "Lakkoofsi bilbilaa barbaachisa"
+  },
+  "booking": {
+    "title": "Imala kee qabsiisi",
+    "packageDetails": "Odeeffannoo qabiyyee",
+    "travelerInfo": "Odeeffannoo imalaa",
+    "documents": "Dokumantii barbaachisan",
+    "review": "Mirkaneessi fi mirkaneessi",
+    "travelDate": "Guyyaa imalaa",
+    "travelers": "Lakkoofsa imalaa",
+    "specialRequests": "Gaaffii adda addaa",
+    "totalPrice": "Gatii walumaagalatti",
+    "bookNow": "Amma qabsiisi",
+    "bookingSuccess": "Qabiyyee milkaa'e!",
+    "bookingError": "Qabiyyee hin milkaa'ine",
+    "uploadDocuments": "Dokumantii ergi",
+    "passport": "Passport",
+    "visa": "Visa",
+    "photo": "Suuraa",
+    "other": "Kan biraa",
+    "dragDropFiles": "Faayilii asii gadi darbi, ykn filachuuf taphi",
+    "fileTypes": "Gosa faayilii deeggaraman: JPG, PNG, PDF",
+    "maxFileSize": "Gatii faayilii guddaa: 5MB",
+    "removeFile": "Faayilii haqi",
+    "previewFile": "Faayilii duratti ilaali",
+    "downloadFile": "Faayilii buufi"
+  },
+  "package": {
+    "duration": "Yeroo",
+    "nights": "Halkan",
+    "price": "Gatii",
+    "rating": "Madaalli",
+    "type": "Gosa",
+    "description": "Ibsa",
+    "includes": "Kan hammate",
+    "excludes": "Kan hin hammate",
+    "itinerary": "Kaayyoo",
+    "bookNow": "Amma qabsiisi",
+    "viewDetails": "Odeeffannoo agarsiisi",
+    "umrah": "Umrah",
+    "hajj": "Hajj",
+    "tour": "Imala",
+    "custom": "Kan qophaa'e"
+  },
+  "footer": {
+    "company": "Ethio Tours",
+    "description": "Hirmaata kee amanamu tajaajila imalaa Umrah fi Hajj",
+    "quickLinks": "Mootummaa dafan",
+    "contactInfo": "Odeeffannoo qunnamaa",
+    "followUs": "Nu hordofaa",
+    "allRightsReserved": "Mirga hunda kan eegaman",
+    "ourServices": "Tajaajila keenya",
+    "faq": "Gaaffilee fooyya'iinsaa",
+    "normalUmrah": "Paakeejii Umrah Addaa",
+    "vipUmrah": "Paakeejii Umrah VIP",
+    "vvipUmrah": "Paakeejii Umrah VVIP",
+    "customPackages": "Paakeejii Haalaan",
+    "helpCenter": "Giddugala Gargaarsa",
+    "travelGuide": "Qajeelfama Imalaa",
+    "visaInfo": "Odeeffannoo Visa",
+    "support247": "Deeggarsa 24/7",
+    "privacyPolicy": "Seera Iccitii",
+    "termsOfService": "Haala Tajaajilaa",
+    "refundPolicy": "Seera Deebisuu",
+    "disclaimer": "Beeksisa Dhabamsiisuu"
+  },
+  "language": {
+    "select": "Afaan filadhu",
+    "english": "English",
+    "arabic": "العربية",
+    "amharic": "አማርኛ",
+    "oromo": "Afaan Oromoo"
+  },
+  "faq": {
+    "title": "Gaaffilee Fooyya'iinsaa",
+    "subtitle": "Deebii gaaffilee fooyya'iinsaa qabiyyee Umrah fi Hajj keenya irratti argadhu",
+    "categories": {
+      "general": {
+        "title": "Gaaffilee Waliigalaa"
+      },
+      "booking": {
+        "title": "Qabsiisuu fi Boqonnaa"
+      },
+      "travel": {
+        "title": "Imalaa fi Geeddaruu"
+      },
+      "payment": {
+        "title": "Kaffaltii fi Gatii"
+      },
+      "safety": {
+        "title": "Nageenyaa fi Amantii"
+      },
+      "support": {
+        "title": "Deeggarsa Maamilootaa"
+      }
+    },
+    "general": {
+      "q1": {
+        "question": "Garaagaraa Umrah fi Hajj gidduu jira?",
+        "answer": "Umrah imalaa fedhii kan waggaa kamiiyyuu raawwatamu dha, Hajj ammoo imalaa dirqama kan guyyaa addaa keessatti raawwatamu dha. Umrah sirna xiqqoo qaba, Hajj ammoo guyyaa hedduu fi sirna gahaa qaba."
+      },
+      "q2": {
+        "question": "Visa imalaa Saudi Arabia geessuuf barbaachisa?",
+        "answer": "Eeyyee, visa Umrah ykn Hajj haqa Saudi Arabia seenuuf barbaachisa. Hojii visa maamiloonni keenya hundaaf hojjanna, dokumantii qophaa'uu, erguu fi hordofuu dabalata."
+      },
+      "q3": {
+        "question": "Umrah irratti maal barbaachisa?",
+        "answer": "Paaspoortii haqa (waggaa 6 ol), suuraa paaspoortii, ragaan talaallii, fi ragaan teessoo barbaachisa. Qophaa'ina dokumantii kamiiyyuu qabnu fi hojii erguu salphaa ta'uuf gargaarsa kennina."
+      },
+      "q4": {
+        "question": "Insuraansii imalaa qabiyyee keessatti jira?",
+        "answer": "Eeyyee, insuraansii imalaa guutuu qabiyyee keenya hunda keessatti jira. Kun balaa fayyaa, dhabamsi imalaa, qabeenya darbee, fi balaa imalaa dabalataa qabata."
+      }
+    },
+    "booking": {
+      "q1": {
+        "question": "Qabiyyee Umrah koo meeqa dura qabsiisuu qaba?",
+        "answer": "Waggaa 2-3 dura qabsiisuu ni gargaarsina. Yeroo guddaa (Ramadaan, yeroo Hajj) waggaa 4-6 dura qabsiisuu ni gargaarsina."
+      },
+      "q2": {
+        "question": "Qabsiisuu koo jijjiiruu ykn dhabamsiisuu danda'a?",
+        "answer": "Eeyyee, guyyaa 30 dura jijjiiruu danda'aa. Seera dhabamsiisuu garaagaraa qaba. Filannoo addaa kennina."
+      },
+      "q3": {
+        "question": "Gatii qabiyyee keessatti maal jira?",
+        "answer": "Qabiyyee keenya balali'ii deebi'uu, teessoo Haram jidduu, geeddaruu lafa, hojii visa, insuraansii imalaa, fi deeggarsa 24/7 qabata."
+      },
+      "q4": {
+        "question": "Qooda garee kennitaa?",
+        "answer": "Eeyyee, gatii garee addaa maatii fi garee namoota 10 ol ta'anif kennina."
+      }
+    },
+    "travel": {
+      "q1": {
+        "question": "Maal kaabaa balali'ii fayyadatta?",
+        "answer": "Kaabaa amanamaa Ethiopian Airlines, Saudi Airlines, fi kaabaa guddaa biraa waliin hojjanna."
+      },
+      "q2": {
+        "question": "Umrah keessatti eessa taa'aa?",
+        "answer": "Hoteela Haram Makkah jidduu fi Masjid Nabi Madinah jidduu keessatti teessoo kennina."
+      },
+      "q3": {
+        "question": "Airport irraa gara hoteela kootti akkamitti geessa?",
+        "answer": "Tajaajila fudhachuu fi geessuu airport maamiloonni keenya hundaaf kennina."
+      },
+      "q4": {
+        "question": "Balali'ii koo darbee yoo ta'e maal ta'a?",
+        "answer": "Balali'ii darbee yoo ta'e, balali'ii itti aanu irratti qabsiisuu si gargaarsina."
+      }
+    },
+    "payment": {
+      "q1": {
+        "question": "Maal kaffaltii fudhatta?",
+        "answer": "Darbii baankii, kaardii kaffaltii (Visa, MasterCard), kaffaltii mobilaa, fi kaffaltii qarshii biroo keessatti fudhatna."
+      },
+      "q2": {
+        "question": "Yoom kaffaltii barbaachisa?",
+        "answer": "30-50% qabsiisuu yeroo qabsiisuu, haala darbee guyyaa 30 dura barbaachisa."
+      },
+      "q3": {
+        "question": "Kaffaltii dhokataa jiraa?",
+        "answer": "Lakki, gatii ifaa amanna. Gatii hunda qabiyyee keessatti ifa ta'ee jira."
+      },
+      "q4": {
+        "question": "Deebisuu kennitaa?",
+        "answer": "Seera deebisuu yeroo dhabamsiisuu fi gosa qabiyyee irratti hundaa'aa."
+      }
+    },
+    "safety": {
+      "q1": {
+        "question": "Saudi Arabia imaluu nageenyaa?",
+        "answer": "Eeyyee, Saudi Arabia hajjiiwwan irratti nageenyaa. Mootummaan tarkaanfii nageenyaa baay'ee qaba."
+      },
+      "q2": {
+        "question": "Maal tarkaanfii fayyaa fudhatuu qaba?",
+        "answer": "Talaallii barbaachisoo fudhatuu, qorichoo barbaachisoo fudhatuu, fi qulqullina gaarii tursiisuu ni gargaarsina."
+      },
+      "q3": {
+        "question": "Yoo balaa ta'e maal gochuu qaba?",
+        "answer": "Deeggarsa balaa 24/7 qabna. Garee keenya balaa fayyaa, dokumantii darbee, fi haala addaa kamiiyyuu gargaarsa kennina."
+      },
+      "q4": {
+        "question": "Dhorgama imalaa beekuu qaba?",
+        "answer": "Dhorgama imalaa yeroo ammaa irratti hundaa'aa. Dhorgama kamiiyyuu yeroo imalaa kee dura si beeksisna."
+      }
+    },
+    "support": {
+      "q1": {
+        "question": "Akkaataa deeggarsa maamilootaa argachuu danda'a?",
+        "answer": "Bilbilaan +251 912 345 678, email support@ethiotours.com, ykn biroo Addis Ababa keessatti nu qunnamaa."
+      },
+      "q2": {
+        "question": "Yeroo biroo keessan maal?",
+        "answer": "Biroo keenya Dafataa-Dilbataa sa'aa 8:00-18:00, fi Sanbata sa'aa 9:00-14:00 keessatti banama."
+      },
+      "q3": {
+        "question": "Qajeelfama dura imalaa kennitaa?",
+        "answer": "Eeyyee, qajeelfama guutuu dura imalaa kennina. Kun barbaachisa visa, qophaa'ina qabachuu, fi hojii imalaa qabata."
+      },
+      "q4": {
+        "question": "Gargaarsa addaa argachuu danda'a?",
+        "answer": "Eeyyee, gargaarsa addaa imaltoota qaanqee, namoota dandeettii hin qabne, fi namoota haala fayyaa qaban irratti kennina."
+      }
+    },
+    "quickHelp": {
+      "phone": {
+        "title": "Nu bilbilii",
+        "description": "Ogummaa imalaa keenya waliin dubbadhu"
+      },
+      "email": {
+        "title": "Nu email ergi",
+        "description": "Gaaffii kee yeroo kamiiyyuu nu ergi"
+      },
+      "hours": {
+        "title": "Yeroo Biroo",
+        "description": "Yeroo hojii keessatti nu qunnamaa",
+        "time": "Dafataa-Dilbataa: 8:00-18:00, Sanbata: 9:00-14:00"
+      }
+    },
+    "stillNeedHelp": {
+      "title": "Ammallee Gargaarsa Barbaachtaa?",
+      "description": "Deebii barbaachtaa hin argattu? Garee deeggarsa keenya gaaffii ykn sodaachisa kamiiyyuu qabduuf jira.",
+      "call": "Deeggarsa Bilbilii",
+      "email": "Deeggarsa Email"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Imala kee gara milkaa'ina hawaasaa",
+      "subtitle": "Imala qulqulluu Umrah fi Hajj kan nuu amanamu tajaajila imalaa waliin dandeessi",
+      "cta": "Qabiyyee qo'achuu",
+      "watchVideo": "Seenaa keenya ilaali"
+    },
+    "features": {
+      "title": "Maaliif nu filattu",
+      "subtitle": "Tajaajila adda addaa imala kee hawaasaa irratti kennina",
+      "feature1": {
+        "title": "Gargaarsa ogummaa",
+        "description": "Gargaarsa ogummaa imala kee hawaasaa guutuu"
+      },
+      "feature2": {
+        "title": "Teessoo gaarii",
+        "description": "Teessoo nagaa fi milkaa'ina"
+      },
+      "feature3": {
+        "title": "24/7 deeggarsa",
+        "description": "Gargaarsa yeroo hunda hajjii kee yeroo"
+      },
+      "feature4": {
+        "title": "Imala garee",
+        "description": "Garee qophaa'een keessa jiraatan namoota yaada walqabatan waliin deemaa"
+      }
+    },
+    "packages": {
+      "title": "Qabiyyee filataman",
+      "subtitle": "Qabiyyee Umrah fi Hajj filataman irraa filadhu",
+      "viewAll": "Qabiyyee hunda ilaali"
+    },
+    "testimonials": {
+      "title": "Hajjii keenya maal jedhu",
+      "subtitle": "Dandeettii dhugaa kan nuu gammachuun jiran"
+    },
+    "stats": {
+      "title": "Madaallii keenya",
+      "pilgrims": "Hajjii gammachuun jiran",
+      "packages": "Qabiyyee",
+      "experience": "Waggaa dandeettii",
+      "destinations": "Bakka deemu"
+    },
+    "umrahGuide": {
+      "title": "Qajeelfama Umrah Guutuu",
+      "subtitle": "Qajeelfama adda addaa Umrah irraa Itoophiyaa hanga xumuraatti. Afaan Ingiliizii, Afaan Amaaraa fi Afaan Arabii keessatti argama.",
+      "steps": {
+        "step1": {
+          "title": "Qophaa'ina Dhaabbataa",
+          "description": "Dokumantii guutuu, fooyyeessuu visa fi qophaa'ina imalaa garee ogummaa keenya waliin.",
+          "items": [
+            "Paaspoortii haqa (haqa waggaa 6 ol)",
+            "Visa Umrah (ZAD Tajaajila Imalaa irraa fooyyeessu)",
+            "Tiiketii kaabaa fi mirkaneessuu hoteela",
+            "Insuraansii imalaa fi barbaachisa fayyaa"
+          ]
+        },
+        "step2": {
+          "title": "Dhaabbata Itoophiyaa irraa",
+          "description": "Dhaabbata salphaa Bole International Airport irraa gargaarsa keenya qophaa'aa waliin.",
+          "items": [
+            "Gargaarsa airport fi check-in",
+            "Walqabatee garee fi ibsa",
+            "Kaabaa gara Saudi Arabia",
+            "Qophaa'ina nyaataa fi nagaa kaabaa keessatti"
+          ]
+        },
+        "step3": {
+          "title": "Gahuu Saudi Arabia",
+          "description": "Gahuu salphaa fi darbii gara teessoo kee Haram jidduu.",
+          "items": [
+            "Gargaarsa airport fi mirkaneessuu baqaa",
+            "Darbii gara hoteela Masjid al-Haram jidduu",
+            "Check-in kutaa fi qajeelfama",
+            "Ibsa mirkaneessuu Umrah fi sirna yeroo"
+          ]
+        },
+        "step4": {
+          "title": "Umrah Fudhachuu",
+          "description": "Sirna Umrah guutuu qajeelfama hawaasaa fi deeggarsa waliin.",
+          "items": [
+            "Qophaa'ina Ihram fi fedhii",
+            "Tawaf Kaaba jidduu (7 circuits)",
+            "Sa'i Safa fi Marwah jidduu (7 rounds)",
+            "Cufuu rifeensa fi baasu Ihram"
+          ]
+        },
+        "step5": {
+          "title": "Imala Madinah",
+          "description": "Imala magaalaa Nabi salaatii fi yaada hawaasaa.",
+          "items": [
+            "Darbii gara Madinah bus wallin ykn kaabaan",
+            "Teessoo hoteela Masjid an-Nabawi jidduu",
+            "Salaata Masjid Nabi keessatti",
+            "Imala bakka taariikhaa Islaamaa"
+          ]
+        },
+        "step6": {
+          "title": "Imala Deebi'uu",
+          "description": "Deebi'uu nageenya Itoophiyaa yaadannoo imala barakaa waliin.",
+          "items": [
+            "Salaata dhumaa fi nageenya",
+            "Darbii gara airport dhaabbataa",
+            "Kaabaa gara Itoophiyaa deebi'uu",
+            "Gargaarsa airport fi darbii mana"
+          ]
+        }
+      }
+    }
+  },
+  "about": {
+    "title": "Waa'ee ZAD Tajaajila Imalaa",
+    "subtitle": "Hirmaata kee amanamu imala hawaasaa",
+    "mission": {
+      "title": "Kaayyoo keenya",
+      "description": "Tajaajila Umrah fi Hajj adda addaa kennuun hajjii kaayyoo hawaasaa isaanii nagaa, nageenya fi tasgabbiin qulqullinaan guutuu dandeessisu."
+    },
+    "vision": {
+      "title": "Argaa keenya",
+      "description": "Tajaajila imalaa hawaasaa guutuu kennuun onnee qulqulluu aalamaatti walitti qabuu keessatti tajaajila imalaa geessisaa ta'uu."
+    },
+    "values": {
+      "title": "Qabiyyee keenya",
+      "integrity": {
+        "title": "Dhugaa",
+        "description": "Bizinii keenya dhugaa fi ifa ta'een hojjechina"
+      },
+      "excellence": {
+        "title": "Gaarii",
+        "description": "Tajaajila keenya hunda keessatti sadarkaa ol'aanaa barbaanna"
+      },
+      "compassion": {
+        "title": "Rahmata",
+        "description": "Bu'aa hawaasaa imala kee hubanna"
+      },
+      "reliability": {
+        "title": "Amanama",
+        "description": "Tajaajila walqabataa fi amanamaa irratti nu hirkachuu dandeessa"
+      }
+    },
+    "team": {
+      "title": "Garee keenya",
+      "subtitle": "Ogummaa imala kee dandeessisu namoota kennuu qaban walitti argadhu"
+    }
+  },
+  "packages": {
+    "title": "Qabiyyee keenya",
+    "subtitle": "Qabiyyee imala kee hawaasaa keessatti filadhu",
+    "filter": {
+      "all": "Qabiyyee hunda",
+      "umrah": "Umrah",
+      "hajj": "Hajj",
+      "tour": "Imala",
+      "custom": "Kan qophaa'e"
+    },
+    "sort": {
+      "title": "Waliin",
+      "price": "Gatii",
+      "duration": "Yeroo",
+      "rating": "Madaalli",
+      "newest": "Haaraa"
+    },
+    "search": {
+      "placeholder": "Qabiyyee barbaadi...",
+      "noResults": "Qabiyyee filannoo kee waliin walqabatu hin argamne"
+    },
+    "filters": {
+      "priceRange": "Gatii gatii",
+      "clearFilters": "Filannoo dhabamsi"
+    },
+    "results": {
+      "showing": "Agarsiisaa",
+      "of": "irraa",
+      "packages": "qabiyyee",
+      "noPackagesFound": "Qabiyyee hin argamne",
+      "tryAdjusting": "Filannoo kee barbaachuu ykn filannoo kee fooyyeessu yaali."
+    },
+    "details": {
+      "duration": "Yeroo",
+      "nights": "Halkan",
+      "price": "Gatii",
+      "rating": "Madaalli",
+      "type": "Gosa",
+      "description": "Ibsa",
+      "includes": "Kan hammate",
+      "excludes": "Kan hin hammate",
+      "itinerary": "Kaayyoo",
+      "bookNow": "Amma qabsiisi",
+      "viewDetails": "Odeeffannoo agarsiisi",
+      "from": "Irraa",
+      "perPerson": "Namni tokko",
+      "groupSize": "Guddina garee",
+      "departure": "Ba'uu",
+      "return": "Deebi'uu"
+    }
+  },
+  "about": {
+    "title": "Waa'ee Ethio Tours",
+    "subtitle": "Hirmaata kee amanamu imalaa hawaasaa",
+    "mission": {
+      "title": "Kaayyoo keenya",
+      "description": "Tajaajila Umrah fi Hajj kan hin dagatamne kennuu hajjiiwwan kaayyoo hawaasaa isaanii nagaa fi nageenyaan guutuu."
+    },
+    "vision": {
+      "title": "Ijaarsa keenya",
+      "description": "Tajaajila imalaa Itoophiyaa keessatti guddaa ta'uu, milkaa'ina keenya fi tajaajila hawaasa Muslimaa irratti amanamu."
+    },
+    "values": {
+      "title": "Qabiyyee keenya",
+      "subtitle": "Murtii hunda keenya jajjabsiisu",
+      "integrity": {
+        "title": "Qulqullina",
+        "description": "Hunda keenya qulqullina, ifaa fi seera qabnuun hojjanna, amanamaa hunda keessatti amanamaa taasisa."
+      },
+      "compassion": {
+        "title": "Rahmata",
+        "description": "Bu'aa imalaa kee hubanna fi tajaajila kee guutuu rahmata fi deeggarsa kennina."
+      },
+      "excellence": {
+        "title": "Milkaa'ina",
+        "description": "Sadarkaa ol'aanaa tajaajila kennuu keessatti qabna, fooyya'iinsaan milkaa'ina kee caaluu yaali."
+      },
+      "reliability": {
+        "title": "Amanamaa",
+        "description": "Waadaa keenya kennuu keessatti amanamaa ta'uu dandeessa, qulqullina walqabataa fi deeggarsa amanamaa hunda keessatti."
+      }
+    },
+    "team": {
+      "title": "Garee keenya",
+      "subtitle": "Ogummaa Ethio Tours jalaa ogummaa qabaniin walqunnamaa"
+    },
+    "story": {
+      "title": "Seenaa keenya",
+      "subtitle": "Imala amantii fi tajaajilaa",
+      "content": "Hubannoo guddaa bu'aa hawaasaa Umrah fi Hajj qabatee kan uumame, Ethio Tours hawaasa Muslimaa Itoophiyaa waggaa hedduu tajaajila. Garee keenya lammummaa guddaa tajaajila imalaa fi rakkina hawaasaa hajjiiwwan keenya waliin walitti makuu."
+    }
+  },
+  "contact": {
+    "title": "Nu qunnamaa",
+    "subtitle": "Gaaffii ykn gargaarsa kamiiyyuu qabduuf garee keenya waliin qunnamaa",
+    "form": {
+      "name": "Maqaa guutuu",
+      "email": "Email teessoo",
+      "phone": "Lakkoofsi bilbilaa",
+      "subject": "Mata duree",
+      "message": "Ergaa",
+      "send": "Ergaa ergi",
+      "sending": "Erguu keessa...",
+      "success": "Ergaa milkaa'inaan ergame!",
+      "error": "Ergaa erguu hin milkaa'ine. Maaloo irra deebi'i."
+    },
+    "info": {
+      "title": "Nu qunnamaa",
+      "address": "Teessoo",
+      "phone": "Bilbilaa",
+      "email": "Email",
+      "hours": "Sa'aatii hojii",
+      "weekdays": "Dilbata - Jimaata: 9:00 WD - 6:00 DH",
+      "weekend": "Sanbata: 9:00 WD - 4:00 DH",
+      "sunday": "Dilbata: Cufa"
+    },
+    "map": {
+      "title": "Nu argadhu"
+    }
+  },
+  "profile": {
+    "title": "Seenaa koo",
+    "subtitle": "Odeeffannoo akkaawuntii kee fi filannoo kee bulchiisi",
+    "personalInfo": {
+      "title": "Odeeffannoo lammii",
+      "name": "Maqaa guutuu",
+      "email": "Email teessoo",
+      "phone": "Lakkoofsi bilbilaa",
+      "update": "Seenaa fooyyeessi",
+      "success": "Seenaa milkaa'inaan fooyyeessame!",
+      "error": "Seenaa fooyyeessuu hin milkaa'ine"
+    },
+    "changePassword": {
+      "title": "Jecha iccitii jijjiiri",
+      "currentPassword": "Jecha iccitii ammaa jiru",
+      "newPassword": "Jecha iccitii haaraa",
+      "confirmPassword": "Jecha iccitii haaraa mirkaneessi",
+      "update": "Jecha iccitii fooyyeessi",
+      "success": "Jecha iccitii milkaa'inaan fooyyeessame!",
+      "error": "Jecha iccitii fooyyeessuu hin milkaa'ine"
+    },
+    "preferences": {
+      "title": "Filannoo",
+      "language": "Afaan",
+      "notifications": "Beeksisa email",
+      "newsletter": "Galchiinsa ogbarruu"
+    }
+  },
+  "bookings": {
+    "title": "Qabiyyee koo",
+    "subtitle": "Qabiyyee imalaa kee ilaali fi bulchiisi",
+    "noBookings": "Qabiyyee kamiiyyuu hin qabdu",
+    "createBooking": "Qabiyyee tokko qabsiisi",
+    "status": {
+      "pending": "Eegamaa jira",
+      "confirmed": "Mirkaneeffame",
+      "cancelled": "Dhabamsiifame",
+      "completed": "Xumurrame"
+    },
+    "actions": {
+      "view": "Odeeffannoo agarsiisi",
+      "cancel": "Qabiyyee dhabamsiisi",
+      "download": "Faayilii buufi"
+    },
+    "details": {
+      "title": "Odeeffannoo qabiyyee",
+      "bookingId": "ID qabiyyee",
+      "package": "Qabiyyee",
+      "travelDate": "Guyyaa imalaa",
+      "travelers": "Lakkoofsa imalaa",
+      "totalPrice": "Gatii walumaagalatti",
+      "status": "Haala",
+      "createdAt": "Guyyaa qabiyyee"
+    }
+  },
+  "blog": {
+    "title": "Blog imalaa",
+    "subtitle": "Seenaa, gorsa fi hubannoo imala kee hawaasaa",
+    "readMore": "Dabalataa dubbisi",
+    "publishedOn": "Bakka",
+    "author": "Kan",
+    "tags": "Mallattoolee",
+    "relatedPosts": "Post waliin walqabatan",
+    "noPosts": "Post blog hin jiran"
+  },
+  "destinations": {
+    "title": "Bakka deemu",
+    "subtitle": "Bakka qulqulluu deemu keessan qo'achuu",
+    "makkah": {
+      "title": "Makkah",
+      "description": "Magaalaa qulqulluu Islam keessatti, mana Kaaba"
+    },
+    "madinah": {
+      "title": "Madiina",
+      "description": "Magaalaa Nabiyyii, nagaan isa irra haa jiraatu"
+    },
+    "jeddah": {
+      "title": "Jeddah",
+      "description": "Balfa magaalaa qulqulluu"
+    }
+  },
+  "errors": {
+    "pageNotFound": "Fuula hin argamne",
+    "pageNotFoundMessage": "Fuula barbaaddu hin jiru.",
+    "goHome": "Mana deebi'i",
+    "serverError": "Dogoggora server",
+    "serverErrorMessage": "Wanti tokko dogoggora. Maaloo booda irra deebi'i.",
+    "networkError": "Dogoggora network",
+    "networkErrorMessage": "Maaloo internet kee mirkaneessi fi irra deebi'i."
+  },
+  "validation": {
+    "required": "Fuula kana barbaachisa",
+    "email": "Maaloo email teessoo sirrii galchi",
+    "phone": "Maaloo lakkoofsa bilbilaa sirrii galchi",
+    "minLength": "{{count}} qubeensa tokko tokko ta'uu qaba",
+    "maxLength": "{{count}} qubeensa caaluu hin qabu",
+    "passwordMatch": "Jecha iccitii wal hin qabatan",
+    "fileSize": "Guddina faayilii {{size}} gadii ta'uu qaba",
+    "fileType": "Gosa faayilii dogoggora. Gosa fayyadamu: {{types}}"
+  }
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { 
   Star, 
   Calendar, 
@@ -17,11 +18,12 @@ import { packagesAPI } from '../services/api';
 import { formatCurrency, getPackageDurationDisplay } from '../utils/helpers';
 
 const Home: React.FC = () => {
+  const { t } = useTranslation();
   const { data: packages, loading: packagesLoading } = useApi(() => packagesAPI.getAll());
 
   const stats = [
-    { number: '1000+', label: 'Umrah Travelers', icon: Users },
-    { number: '15+', label: 'Umrah Packages', icon: Calendar },
+    { number: '1000+', label: t('home.stats.pilgrims'), icon: Users },
+    { number: '15+', label: t('home.stats.packages'), icon: Calendar },
     { number: '98%', label: 'Satisfaction Rate', icon: Heart },
     { number: '24/7', label: 'Customer Support', icon: Clock },
   ];
@@ -29,85 +31,69 @@ const Home: React.FC = () => {
   const features = [
     {
       icon: Shield,
-      title: 'Secure & Reliable',
-      description: 'Your journey is protected with comprehensive travel insurance and 24/7 support.'
+      title: t('home.features.feature1.title'),
+      description: t('home.features.feature1.description')
     },
     {
       icon: MapPin,
-      title: 'Hotels Near Haram',
-      description: 'Stay in premium hotels within walking distance of the Holy Mosques.'
+      title: t('home.features.feature2.title'),
+      description: t('home.features.feature2.description')
     },
     {
       icon: Globe,
-      title: 'Expert Guidance',
-      description: 'Experienced guides to help you perform Umrah with proper spiritual guidance.'
+      title: t('home.features.feature3.title'),
+      description: t('home.features.feature3.description')
     },
     {
       icon: Heart,
-      title: 'Spiritual Experience',
-      description: 'Focus on worship with our carefully planned itineraries and spiritual support.'
+      title: t('home.features.feature4.title'),
+      description: t('home.features.feature4.description')
     }
   ];
 
   const umrahSteps = [
     {
       step: '01',
-      title: 'Pre-Departure Preparation',
-      titleAmharic: 'የመነሻ ዝግጅት',
-      titleArabic: 'التحضير قبل السفر',
-      description: 'Complete documentation, visa processing, and travel preparation with our expert team.',
-      items: [
-        'Valid passport (minimum 6 months validity)',
-        'Umrah visa (processed by EthioTour Travel Agency)',
-        'Flight tickets and hotel confirmations',
-        'Travel insurance and health requirements'
-      ]
+      title: t('home.umrahGuide.steps.step1.title'),
+      description: t('home.umrahGuide.steps.step1.description'),
+      items: t('home.umrahGuide.steps.step1.items', { returnObjects: true }) as string[]
     },
     {
       step: '02',
-      title: 'Departure from Ethiopia',
-      titleAmharic: 'ከኢትዮጵያ መነሻ',
-      titleArabic: 'المغادرة من إثيوبيا',
-      description: 'Smooth departure from Bole International Airport with our dedicated assistance.',
-      items: [
-        'Airport assistance and check-in support',
-        'Immigration procedures guidance',
-        'Flight to Saudi Arabia (4-5 hours)',
-        'Meet and greet services'
-      ]
+      title: t('home.umrahGuide.steps.step2.title'),
+      description: t('home.umrahGuide.steps.step2.description'),
+      items: t('home.umrahGuide.steps.step2.items', { returnObjects: true }) as string[]
     },
     {
       step: '03',
-      title: 'Arrival in Saudi Arabia',
-      titleAmharic: 'በሳዑዲ ዓረቢያ መድረስ',
-      titleArabic: 'الوصول إلى المملكة العربية السعودية',
-      description: 'Seamless arrival and transfer to your hotel near the Holy Mosques.',
-      items: [
-        'Immigration and biometric registration',
-        'Luggage collection assistance',
-        'Transfer to hotel near Haram',
-        'Welcome orientation and briefing'
-      ]
+      title: t('home.umrahGuide.steps.step3.title'),
+      description: t('home.umrahGuide.steps.step3.description'),
+      items: t('home.umrahGuide.steps.step3.items', { returnObjects: true }) as string[]
     },
     {
       step: '04',
-      title: 'Entering Ihram',
-      titleAmharic: 'ወደ ኢሕራም መግቢያ',
-      titleArabic: 'الدخول في الإحرام',
-      description: 'Proper guidance for entering the sacred state of Ihram for Umrah.',
-      items: [
-        'Complete shower (Ghusl) and preparation',
-        'Wearing Ihram clothing correctly',
-        'Making the intention (Niyyah)',
-        'Reciting Talbiyah and prayers'
-      ]
+      title: t('home.umrahGuide.steps.step4.title'),
+      description: t('home.umrahGuide.steps.step4.description'),
+      items: t('home.umrahGuide.steps.step4.items', { returnObjects: true }) as string[]
+    },
+    {
+      step: '05',
+      title: t('home.umrahGuide.steps.step5.title'),
+      description: t('home.umrahGuide.steps.step5.description'),
+      items: t('home.umrahGuide.steps.step5.items', { returnObjects: true }) as string[]
+    },
+    {
+      step: '06',
+      title: t('home.umrahGuide.steps.step6.title'),
+      description: t('home.umrahGuide.steps.step6.description'),
+      items: t('home.umrahGuide.steps.step6.items', { returnObjects: true }) as string[]
     }
   ];
 
   return (
     <div className="min-h-screen">
       {/* Hero Section with Animated Video */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden mt-16 lg:mt-20">
         {/* Video Background */}
         <div className="absolute inset-0 w-full h-full">
           <video
@@ -145,13 +131,13 @@ const Home: React.FC = () => {
         </div>
         
         {/* Content */}
-        <div className="relative z-10 container-custom text-center text-white">
+        <div className="relative z-10 container-custom text-center text-white py-8">
           <div className="max-w-5xl mx-auto">
             {/* Animated title */}
             <div className="mb-8">
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-shadow-lg leading-tight">
                 <span className="block animate-fade-in-up" style={{animationDelay: '0.2s'}}>
-                  Your Spiritual Journey
+                  {t('home.hero.title')}
                 </span>
                 <span className="block text-secondary-300 animate-fade-in-up" style={{animationDelay: '0.4s'}}>
                   to the Holy Cities
@@ -161,8 +147,7 @@ const Home: React.FC = () => {
             
             {/* Animated subtitle */}
             <p className="text-xl md:text-2xl lg:text-3xl mb-12 text-gray-200 leading-relaxed max-w-4xl mx-auto animate-fade-in-up" style={{animationDelay: '0.6s'}}>
-              Complete Umrah packages with visa, flights, hotels near Haram, 
-              ground transport, and spiritual guidance for a blessed journey.
+              {t('home.hero.subtitle')}
             </p>
             
             {/* Animated buttons */}
@@ -172,7 +157,7 @@ const Home: React.FC = () => {
                 className="btn-secondary text-lg px-10 py-5 inline-flex items-center space-x-3 transform hover:scale-105 transition-all duration-300 shadow-2xl"
               >
                 <Calendar size={24} />
-                <span>Book Umrah</span>
+                <span>{t('home.hero.cta')}</span>
               </Link>
               <Link
                 to="/about"
@@ -183,16 +168,16 @@ const Home: React.FC = () => {
             </div>
             
             {/* Animated stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto animate-fade-in-up" style={{animationDelay: '1s'}}>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto animate-fade-in-up" style={{animationDelay: '1s'}}>
               {stats.map((stat, index) => (
                 <div key={index} className="text-center group">
                   <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-white/30 transition-all duration-300 group-hover:scale-110">
                     <stat.icon size={28} className="text-secondary-300" />
                   </div>
-                  <div className="text-3xl md:text-4xl font-bold text-secondary-300 mb-2">
+                  <div className="text-2xl md:text-3xl font-bold text-secondary-300 mb-2">
                     {stat.number}
                   </div>
-                  <div className="text-sm md:text-base text-gray-300 font-medium">{stat.label}</div>
+                  <div className="text-xs md:text-sm text-gray-300 font-medium">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -212,11 +197,10 @@ const Home: React.FC = () => {
         <div className="container-custom">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Complete Umrah Guide
+              {t('home.umrahGuide.title')}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Step-by-step guidance for performing Umrah from Ethiopia to completion. 
-              Available in English, Amharic, and Arabic.
+              {t('home.umrahGuide.subtitle')}
             </p>
           </div>
           
@@ -231,10 +215,6 @@ const Home: React.FC = () => {
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">
                       {step.title}
                     </h3>
-                    <div className="text-sm text-gray-600 mb-3">
-                      <div className="amharic-text">{step.titleAmharic}</div>
-                      <div className="arabic-text">{step.titleArabic}</div>
-                    </div>
                     <p className="text-gray-700 mb-4">{step.description}</p>
                     <ul className="space-y-2">
                       {step.items.map((item, itemIndex) => (
@@ -257,11 +237,10 @@ const Home: React.FC = () => {
         <div className="container-custom">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Complete Umrah Packages
+              {t('home.packages.title')}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Choose from our range of Umrah packages designed to meet different needs and budgets, 
-              all ensuring a blessed and comfortable spiritual experience.
+              {t('home.packages.subtitle')}
             </p>
           </div>
           
@@ -332,7 +311,7 @@ const Home: React.FC = () => {
               to="/packages"
               className="btn-outline text-lg px-8 py-3 inline-flex items-center space-x-2"
             >
-              <span>View All Packages</span>
+              <span>{t('home.packages.viewAll')}</span>
               <ArrowRight size={18} />
             </Link>
           </div>
@@ -344,12 +323,10 @@ const Home: React.FC = () => {
         <div className="container-custom">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Why Choose EthioTour Travel Agency?
+              {t('home.features.title')}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We believe every pilgrim deserves a blessed and comfortable Umrah. 
-              Founded in 2025, our mission is to provide authentic, affordable, 
-              and spiritually enriching journeys.
+              {t('home.features.subtitle')}
             </p>
           </div>
           

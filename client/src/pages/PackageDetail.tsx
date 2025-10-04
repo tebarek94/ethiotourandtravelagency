@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { 
   Star, 
   Calendar, 
   MapPin, 
   Users, 
-  CheckCircle,
   ArrowRight,
   Heart,
   Share2,
   ArrowLeft,
-  Clock,
   Shield,
   Plane,
   Hotel,
@@ -27,12 +26,12 @@ import { useAuth } from '../contexts/AuthContext';
 import toast from 'react-hot-toast';
 
 const PackageDetail: React.FC = () => {
+  const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { user } = useAuth();
   const packageId = id ? parseInt(id) : 0;
   const [isFavorite, setIsFavorite] = useState(false);
-  const [selectedTab, setSelectedTab] = useState('overview');
 
   const { data: packageData, loading, error } = useApi(
     () => packagesAPI.getById(packageId),
@@ -130,7 +129,7 @@ const PackageDetail: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <section className="bg-gradient-primary py-16">
+      <section className="bg-gradient-primary py-16 mt-16 lg:mt-20">
         <div className="container-custom text-white">
           <div className="flex items-center justify-between mb-4">
             <button
@@ -223,7 +222,7 @@ const PackageDetail: React.FC = () => {
                   className="btn-secondary w-full inline-flex items-center justify-center space-x-2"
                 >
                   <Calendar size={20} />
-                  <span>Book Now</span>
+                  <span>{t('packages.details.bookNow')}</span>
                 </button>
               </div>
             </div>

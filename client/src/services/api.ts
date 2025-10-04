@@ -102,8 +102,14 @@ export const destinationsAPI = {
 
 // Bookings API
 export const bookingsAPI = {
-  create: async (bookingData: CreateBookingRequest): Promise<ApiResponse<Booking>> => {
-    const response: AxiosResponse<ApiResponse<Booking>> = await api.post('/bookings', bookingData);
+  create: async (bookingData: CreateBookingRequest | FormData): Promise<ApiResponse<Booking>> => {
+    const config = bookingData instanceof FormData ? {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    } : {};
+    
+    const response: AxiosResponse<ApiResponse<Booking>> = await api.post('/bookings', bookingData, config);
     return response.data;
   },
 
@@ -124,6 +130,18 @@ export const bookingsAPI = {
 
   delete: async (id: number): Promise<ApiResponse<void>> => {
     const response: AxiosResponse<ApiResponse<void>> = await api.delete(`/bookings/${id}`);
+    return response.data;
+  },
+
+  getDocuments: async (bookingId: number): Promise<ApiResponse<any[]>> => {
+    const response: AxiosResponse<ApiResponse<any[]>> = await api.get(`/bookings/${bookingId}/documents`);
+    return response.data;
+  },
+
+  downloadDocument: async (documentId: number): Promise<Blob> => {
+    const response = await api.get(`/bookings/documents/${documentId}/download`, {
+      responseType: 'blob'
+    });
     return response.data;
   },
 };

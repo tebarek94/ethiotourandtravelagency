@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { Eye, EyeOff, Mail, Lock, ArrowRight } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { LoginRequest } from '../types';
 
 const Login: React.FC = () => {
+  const { t } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
@@ -49,15 +51,15 @@ const Login: React.FC = () => {
         </div>
 
         <h2 className="mt-6 text-center text-3xl font-bold text-gray-900">
-          Sign in to your account
+          {t('auth.welcome')}
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
-          Or{' '}
+          {t('auth.loginPrompt')} {' '}
           <Link
             to="/register"
             className="font-medium text-primary-600 hover:text-primary-500 transition-colors duration-200"
           >
-            create a new account
+            {t('auth.noAccount')}
           </Link>
         </p>
       </div>
@@ -68,7 +70,7 @@ const Login: React.FC = () => {
             {/* Email Field */}
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                Email address
+                {t('auth.email')}
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -97,7 +99,7 @@ const Login: React.FC = () => {
             {/* Password Field */}
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
-                Password
+                {t('auth.password')}
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -169,7 +171,7 @@ const Login: React.FC = () => {
                   <div className="spinner"></div>
                 ) : (
                   <>
-                    <span>Sign in</span>
+                    <span>{t('navigation.login')}</span>
                     <ArrowRight size={16} />
                   </>
                 )}

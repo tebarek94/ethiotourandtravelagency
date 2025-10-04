@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { 
   Mail, 
   Phone, 
@@ -15,6 +16,7 @@ import { CreateInquiryRequest } from '../types';
 import toast from 'react-hot-toast';
 
 const Contact: React.FC = () => {
+  const { t } = useTranslation();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -31,9 +33,9 @@ const Contact: React.FC = () => {
       await inquiriesAPI.create(data);
       setIsSubmitted(true);
       reset();
-      toast.success('Your inquiry has been submitted successfully!');
+      toast.success(t('contact.form.success'));
     } catch (error: any) {
-      toast.error(error.response?.data?.message || 'Failed to submit inquiry. Please try again.');
+      toast.error(error.response?.data?.message || t('contact.form.error'));
     } finally {
       setIsSubmitting(false);
     }
@@ -116,14 +118,13 @@ const Contact: React.FC = () => {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <section className="bg-gradient-primary py-16">
+      <section className="bg-gradient-primary py-16 mt-16 lg:mt-20">
         <div className="container-custom text-center text-white">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Contact Us
+            {t('contact.title')}
           </h1>
           <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-            Have questions about our Umrah packages? We're here to help you plan your spiritual journey. 
-            Get in touch with our expert team.
+            {t('contact.subtitle')}
           </p>
         </div>
       </section>

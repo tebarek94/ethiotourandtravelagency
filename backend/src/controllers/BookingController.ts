@@ -5,7 +5,10 @@ import {
   HotelService, 
   TransferService 
 } from '../services/BookingService';
+import { DocumentModel } from '../models/Document';
 import { AuthenticatedRequest } from '../types';
+import path from 'path';
+import fs from 'fs';
 
 export class BookingController {
   static async createBooking(req: Request, res: Response, next: NextFunction): Promise<void> {
@@ -19,12 +22,52 @@ export class BookingController {
         return;
       }
 
-      const booking = await BookingService.createBooking(req.body, userId);
+      // Extract booking data from form data
+      const bookingData = {
+        package_id: parseInt(req.body.package_id),
+        travel_date: req.body.travel_date,
+        travelers: parseInt(req.body.travelers),
+        name: req.body.name,
+        email: req.body.email,
+        phone: req.body.phone,
+        special_requests: req.body.special_requests
+      };
+
+      const booking = await BookingService.createBooking(bookingData, userId);
+
+      // Handle file uploads if any
+      if (req.files) {
+        const files = req.files as { [fieldname: string]: Express.Multer.File[] };
+        const fileTypes = req.body.file_types ? 
+          (Array.isArray(req.body.file_types) ? req.body.file_types : [req.body.file_types]) : 
+          [];
+
+        // Process uploaded files
+        for (let i = 0; i < (files.files || []).length; i++) {
+          const file = files.files[i];
+          const fileType = fileTypes[i] || 'other';
+
+          const documentData = {
+            booking_id: booking.booking_id,
+            file_name: file.filename,
+            original_name: file.originalname,
+            file_path: file.path,
+            file_type: fileType as 'passport' | 'visa' | 'photo' | 'other',
+            file_size: file.size,
+            mime_type: file.mimetype
+          };
+
+          await DocumentModel.create(documentData);
+        }
+      }
+
+      // Get booking with documents
+      const bookingWithDocuments = await BookingService.getBookingById(booking.booking_id, userId);
       
       res.status(201).json({
         success: true,
         message: 'Booking created successfully',
-        data: booking
+        data: bookingWithDocuments
       });
     } catch (error) {
       next(error);
@@ -132,6 +175,116 @@ export class BookingController {
       res.json({
         success: true,
         message: 'Booking deleted successfully'
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async getBookingDocuments(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const bookingId = parseInt(req.params.id);
+      if (isNaN(bookingId)) {
+        res.status(400).json({
+          success: false,
+          message: 'Invalid booking ID'
+        });
+        return;
+      }
+
+      const userId = (req as AuthenticatedRequest).user?.user_id;
+      const userRole = (req as AuthenticatedRequest).user?.role;
+      
+      // Verify user has access to this booking
+      const booking = await BookingService.getBookingById(
+        bookingId, 
+        userRole === 'admin' ? undefined : userId
+      );
+
+      if (!booking) {
+        res.status(404).json({
+          success: false,
+          message: 'Booking not found'
+        });
+        return;
+      }
+
+      const documents = await DocumentModel.findByBookingId(bookingId);
+      
+      res.json({
+        success: true,
+        message: 'Documents retrieved successfully',
+        data: documents
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async downloadDocument(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const documentId = parseInt(req.params.documentId);
+      if (isNaN(documentId)) {
+        res.status(400).json({
+          success: false,
+          message: 'Invalid document ID'
+        });
+        return;
+      }
+
+      const userId = (req as AuthenticatedRequest).user?.user_id;
+      const userRole = (req as AuthenticatedRequest).user?.role;
+      
+      const document = await DocumentModel.findById(documentId);
+      if (!document) {
+        res.status(404).json({
+          success: false,
+          message: 'Document not found'
+        });
+        return;
+      }
+
+      // Verify user has access to this document's booking
+      const booking = await BookingService.getBookingById(
+        document.booking_id, 
+        userRole === 'admin' ? undefined : userId
+      );
+
+      if (!booking) {
+        res.status(403).json({
+          success: false,
+          message: 'Access denied'
+        });
+        return;
+      }
+
+      // Check if file exists
+      const filePath = path.resolve(document.file_path);
+      if (!fs.existsSync(filePath)) {
+        res.status(404).json({
+          success: false,
+          message: 'File not found on server'
+        });
+        return;
+      }
+
+      // Set headers for file download
+      res.setHeader('Content-Disposition', `attachment; filename="${document.original_name}"`);
+      res.setHeader('Content-Type', document.mime_type);
+      res.setHeader('Content-Length', document.file_size);
+
+      // Stream the file
+      const fileStream = fs.createReadStream(filePath);
+      fileStream.pipe(res);
+
+      fileStream.on('error', (error) => {
+        console.error('File stream error:', error);
+        if (!res.headersSent) {
+          res.status(500).json({
+            success: false,
+            message: 'Error reading file'
+          });
+        }
       });
     } catch (error) {
       next(error);

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import {
     Mail,
     Phone,
@@ -13,6 +14,8 @@ import {
 } from 'lucide-react';
 
 const Footer: React.FC = () => {
+    const { t } = useTranslation();
+    
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
@@ -21,28 +24,28 @@ const Footer: React.FC = () => {
 
     const footerLinks = {
         company: [
-            { name: 'About Us', href: '/about' },
-            { name: 'Our Services', href: '/services' },
-            { name: 'Contact Us', href: '/contact' },
-            { name: 'FAQ', href: '/faq' },
+            { name: t('navigation.about'), href: '/about' },
+            { name: t('footer.ourServices'), href: '/services' },
+            { name: t('navigation.contact'), href: '/contact' },
+            { name: t('footer.faq'), href: '/faq' },
         ],
         services: [
-            { name: 'Normal Umrah Package', href: '/packages/normal' },
-            { name: 'VIP Umrah Package', href: '/packages/vip' },
-            { name: 'VVIP Umrah Package', href: '/packages/vvip' },
-            { name: 'Custom Packages', href: '/packages/custom' },
+            { name: t('footer.normalUmrah'), href: '/packages/normal' },
+            { name: t('footer.vipUmrah'), href: '/packages/vip' },
+            { name: t('footer.vvipUmrah'), href: '/packages/vvip' },
+            { name: t('footer.customPackages'), href: '/packages/custom' },
         ],
         support: [
-            { name: 'Help Center', href: '/help' },
-            { name: 'Travel Guide', href: '/guide' },
-            { name: 'Visa Information', href: '/visa' },
-            { name: '24/7 Support', href: '/support' },
+            { name: t('footer.helpCenter'), href: '/help' },
+            { name: t('footer.travelGuide'), href: '/guide' },
+            { name: t('footer.visaInfo'), href: '/visa' },
+            { name: t('footer.support247'), href: '/support' },
         ],
         legal: [
-            { name: 'Privacy Policy', href: '/privacy' },
-            { name: 'Terms of Service', href: '/terms' },
-            { name: 'Refund Policy', href: '/refund' },
-            { name: 'Disclaimer', href: '/disclaimer' },
+            { name: t('footer.privacyPolicy'), href: '/privacy' },
+            { name: t('footer.termsOfService'), href: '/terms' },
+            { name: t('footer.refundPolicy'), href: '/refund' },
+            { name: t('footer.disclaimer'), href: '/disclaimer' },
         ],
     };
 
@@ -54,13 +57,13 @@ const Footer: React.FC = () => {
     ];
 
     return (
-        <footer className="bg-gray-900 text-white">
+        <footer className="bg-gray-900 text-white mt-auto">
             {/* Main Footer Content */}
-            <div className="container-custom section-padding">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+            <div className="container-custom py-16">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {/* Company Info */}
-                    <div className="lg:col-span-2">
-                        <Link to="/" className="flex items-center space-x-2 mb-6">
+                    <div className="md:col-span-2 lg:col-span-1">
+                        <Link to="/" className="flex items-center space-x-2 rtl:space-x-reverse mb-6">
                             <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center">
                                 <span className="text-white font-bold text-xl">E</span>
                             </div>
@@ -71,14 +74,12 @@ const Footer: React.FC = () => {
                         </Link>
 
                         <p className="text-gray-300 mb-6 leading-relaxed">
-                            Your trusted partner for blessed journeys to the holy cities.
-                            We provide authentic, affordable, and spiritually enriching Umrah experiences
-                            with hotels near the Haramain, guided Ziyarat, and 24/7 support.
+                            {t('footer.description')}
                         </p>
 
                         {/* Contact Info */}
                         <div className="space-y-3">
-                            <div className="flex items-center space-x-3">
+                            <div className="flex items-center space-x-3 rtl:space-x-reverse">
                                 <Mail size={16} className="text-primary-400" />
                                 <a
                                     href="mailto:umrah@ethiotour.com"
@@ -87,7 +88,7 @@ const Footer: React.FC = () => {
                                     umrah@ethiotour.com
                                 </a>
                             </div>
-                            <div className="flex items-center space-x-3">
+                            <div className="flex items-center space-x-3 rtl:space-x-reverse">
                                 <Phone size={16} className="text-primary-400" />
                                 <a
                                     href="tel:+251986111333"
@@ -96,7 +97,7 @@ const Footer: React.FC = () => {
                                     +251 986 111 333
                                 </a>
                             </div>
-                            <div className="flex items-center space-x-3">
+                            <div className="flex items-center space-x-3 rtl:space-x-reverse">
                                 <MapPin size={16} className="text-primary-400" />
                                 <span className="text-gray-300">Addis Ababa, Ethiopia</span>
                             </div>
@@ -105,7 +106,7 @@ const Footer: React.FC = () => {
 
                     {/* Quick Links */}
                     <div>
-                        <h4 className="text-lg font-semibold mb-4">Company</h4>
+                        <h4 className="text-lg font-semibold mb-4">{t('footer.quickLinks')}</h4>
                         <ul className="space-y-2">
                             {footerLinks.company.map((link) => (
                                 <li key={link.name}>
@@ -166,7 +167,7 @@ const Footer: React.FC = () => {
                             <input
                                 type="email"
                                 placeholder="Enter your email"
-                                className="flex-1 px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-white placeholder-gray-400"
+                                className="flex-1 px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-white placeholder-gray-400 text-left rtl:text-right"
                             />
                             <button className="btn-primary whitespace-nowrap">
                                 Subscribe
@@ -178,9 +179,9 @@ const Footer: React.FC = () => {
                 {/* Social Links */}
                 <div className="mt-8 pt-8 border-t border-gray-800">
                     <div className="flex flex-col md:flex-row justify-between items-center">
-                        <div className="flex items-center space-x-4 mb-4 md:mb-0">
+                        <div className="flex items-center space-x-4 rtl:space-x-reverse mb-4 md:mb-0">
                             <span className="text-gray-400">Follow us:</span>
-                            <div className="flex items-center space-x-3">
+                            <div className="flex items-center space-x-3 rtl:space-x-reverse">
                                 {socialLinks.map((social) => (
                                     <a
                                         key={social.name}
@@ -199,7 +200,7 @@ const Footer: React.FC = () => {
                         {/* Back to Top Button */}
                         <button
                             onClick={scrollToTop}
-                            className="flex items-center space-x-2 text-gray-400 hover:text-primary-400 transition-colors duration-200"
+                            className="flex items-center space-x-2 rtl:space-x-reverse text-gray-400 hover:text-primary-400 transition-colors duration-200"
                         >
                             <ArrowUp size={16} />
                             <span>Back to Top</span>
@@ -212,10 +213,10 @@ const Footer: React.FC = () => {
             <div className="bg-gray-950 py-4">
                 <div className="container-custom">
                     <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
-                        <div className="flex items-center space-x-1 mb-2 md:mb-0">
-                            <span>© {currentYear} EthioTour Travel Agency. All rights reserved.</span>
+                        <div className="flex items-center space-x-1 rtl:space-x-reverse mb-2 md:mb-0">
+                            <span>© {currentYear} {t('footer.company')}. {t('footer.allRightsReserved')}</span>
                         </div>
-                        <div className="flex items-center space-x-4">
+                        <div className="flex items-center space-x-4 rtl:space-x-reverse">
                             <Link
                                 to="/privacy"
                                 className="hover:text-primary-400 transition-colors duration-200"
@@ -228,11 +229,11 @@ const Footer: React.FC = () => {
                             >
                                 Terms of Service
                             </Link>
-                            <div className="flex items-center space-x-1">
+                            <div className="flex items-center space-x-1 rtl:space-x-reverse">
                                 <span>Made with</span>
                                 <Heart size={14} className="text-red-500" />
                                 <span>by</span>
-                                EthioTour
+                                EthioTours
                             </div>
                         </div>
                     </div>

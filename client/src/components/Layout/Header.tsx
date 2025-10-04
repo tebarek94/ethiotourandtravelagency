@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, User, LogOut, Calendar, Package, BookOpen, Phone, Settings } from 'lucide-react';
+import { Menu, X, User, LogOut, Calendar, Package, BookOpen, Phone, Settings, HelpCircle } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from '../LanguageSwitcher';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const { user, logout } = useAuth();
+  const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -31,12 +34,13 @@ const Header: React.FC = () => {
   };
 
   const navItems = [
-    { name: 'Home', path: '/', icon: null },
-    { name: 'About Us', path: '/about', icon: null },
-    { name: 'Packages', path: '/packages', icon: Package },
-    { name: 'Destinations', path: '/destinations', icon: null },
-    { name: 'Blog', path: '/blog', icon: BookOpen },
-    { name: 'Contact', path: '/contact', icon: Phone },
+    { name: t('navigation.home'), path: '/', icon: null },
+    { name: t('navigation.about'), path: '/about', icon: null },
+    { name: t('navigation.packages'), path: '/packages', icon: Package },
+    { name: t('navigation.destinations'), path: '/destinations', icon: null },
+    { name: t('navigation.blog'), path: '/blog', icon: BookOpen },
+    { name: t('navigation.faq'), path: '/faq', icon: HelpCircle },
+    { name: t('navigation.contact'), path: '/contact', icon: Phone },
   ];
 
   return (
@@ -44,7 +48,7 @@ const Header: React.FC = () => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
           ? 'bg-white/95 backdrop-blur-md shadow-lg'
-          : 'bg-transparent'
+          : 'bg-white/90 backdrop-blur-sm'
       }`}
     >
       <div className="container-custom">
@@ -56,19 +60,19 @@ const Header: React.FC = () => {
             </div>
             <div className="hidden sm:block">
               <h1 className="text-xl lg:text-2xl font-bold text-gray-900">
-                EthioTour
+                EthioTours
               </h1>
               <p className="text-xs text-gray-600">Travel Agency</p>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-6 rtl:space-x-reverse">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`flex items-center space-x-1 px-3 py-2 rounded-lg transition-colors duration-200 ${
+                className={`flex items-center space-x-1 rtl:space-x-reverse px-3 py-2 rounded-lg transition-colors duration-200 ${
                   isActive(item.path)
                     ? 'text-primary-600 bg-primary-50'
                     : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
@@ -81,12 +85,15 @@ const Header: React.FC = () => {
           </nav>
 
           {/* User Menu / Auth Buttons */}
-          <div className="flex items-center space-x-4">
-            {user ? (
+          <div className="flex items-center space-x-2 lg:space-x-4 rtl:space-x-reverse">
+            {/* Language Switcher */}
+            <LanguageSwitcher />
+            
+            {user && (
               <div className="relative">
                 <button
                   onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                  className="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+                  className="flex items-center space-x-2 rtl:space-x-reverse p-2 rounded-lg hover:bg-gray-50 transition-colors duration-200"
                 >
                   <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
                     <User size={16} className="text-primary-600" />
@@ -98,27 +105,27 @@ const Header: React.FC = () => {
 
                 {/* User Dropdown */}
                 {isUserMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+                  <div className="absolute right-0 rtl:left-0 rtl:right-auto mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
                     <Link
                       to="/profile"
-                      className="flex items-center space-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                      className="flex items-center space-x-2 rtl:space-x-reverse px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
                       onClick={() => setIsUserMenuOpen(false)}
                     >
                       <User size={16} />
-                      <span>Profile</span>
+                      <span>{t('navigation.profile')}</span>
                     </Link>
                     <Link
                       to="/bookings"
-                      className="flex items-center space-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                      className="flex items-center space-x-2 rtl:space-x-reverse px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
                       onClick={() => setIsUserMenuOpen(false)}
                     >
                       <Calendar size={16} />
-                      <span>My Bookings</span>
+                      <span>{t('navigation.bookings')}</span>
                     </Link>
                     {user.role === 'admin' && (
                       <Link
                         to="/admin"
-                        className="flex items-center space-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                        className="flex items-center space-x-2 rtl:space-x-reverse px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
                         onClick={() => setIsUserMenuOpen(false)}
                       >
                         <Settings size={16} />
@@ -128,38 +135,23 @@ const Header: React.FC = () => {
                     <hr className="my-2" />
                     <button
                       onClick={handleLogout}
-                      className="flex items-center space-x-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 w-full text-left"
+                      className="flex items-center space-x-2 rtl:space-x-reverse px-4 py-2 text-sm text-red-600 hover:bg-red-50 w-full text-left rtl:text-right"
                     >
                       <LogOut size={16} />
-                      <span>Logout</span>
+                      <span>{t('navigation.logout')}</span>
                     </button>
                   </div>
                 )}
-              </div>
-            ) : (
-              <div className="hidden sm:flex items-center space-x-3">
-                <Link
-                  to="/login"
-                  className="text-gray-700 hover:text-primary-600 font-medium transition-colors duration-200"
-                >
-                  Login
-                </Link>
-                <Link
-                  to="/register"
-                  className="btn-primary text-sm"
-                >
-                  Register
-                </Link>
               </div>
             )}
 
             {/* Book Umrah Button */}
             <Link
               to="/packages"
-              className="btn-secondary text-sm hidden sm:inline-flex items-center space-x-1"
+              className="btn-secondary text-sm hidden sm:inline-flex items-center space-x-1 rtl:space-x-reverse"
             >
               <Calendar size={16} />
-              <span>Book Umrah</span>
+              <span>{t('package.bookNow')}</span>
             </Link>
 
             {/* Mobile Menu Button */}
@@ -180,7 +172,7 @@ const Header: React.FC = () => {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`flex items-center space-x-2 px-4 py-3 rounded-lg transition-colors duration-200 ${
+                  className={`flex items-center space-x-2 rtl:space-x-reverse px-4 py-3 rounded-lg transition-colors duration-200 ${
                     isActive(item.path)
                       ? 'text-primary-600 bg-primary-50'
                       : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
@@ -191,25 +183,6 @@ const Header: React.FC = () => {
                   <span className="font-medium">{item.name}</span>
                 </Link>
               ))}
-              
-              {!user && (
-                <div className="px-4 pt-4 border-t border-gray-200">
-                  <Link
-                    to="/login"
-                    className="block w-full text-center py-2 text-gray-700 hover:text-primary-600 font-medium transition-colors duration-200"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Login
-                  </Link>
-                  <Link
-                    to="/register"
-                    className="block w-full text-center btn-primary mt-2"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Register
-                  </Link>
-                </div>
-              )}
             </nav>
           </div>
         )}

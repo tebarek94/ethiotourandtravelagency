@@ -7,6 +7,7 @@ import {
 } from '../controllers/BookingController';
 import { authMiddleware, adminMiddleware, userMiddleware } from '../middlewares/auth';
 import { validateBooking, validateFlight, validateHotel, validateBookingHotel, validateTransfer } from '../middlewares/validation';
+import { uploadDocuments } from '../middlewares/upload';
 
 const router = Router();
 
@@ -14,8 +15,8 @@ const router = Router();
 router.use(authMiddleware);
 
 // Booking routes
-// POST /api/bookings - Create booking (user)
-router.post('/', userMiddleware, validateBooking, BookingController.createBooking);
+// POST /api/bookings - Create booking (user) with file uploads
+router.post('/', userMiddleware, uploadDocuments, BookingController.createBooking);
 
 // GET /api/bookings - User's bookings (user), all bookings (admin)
 router.get('/', BookingController.getAllBookings);
@@ -28,6 +29,13 @@ router.put('/:id', adminMiddleware, BookingController.updateBooking);
 
 // DELETE /api/bookings/:id - Cancel booking
 router.delete('/:id', BookingController.deleteBooking);
+
+// Document routes
+// GET /api/bookings/:id/documents - Get booking documents
+router.get('/:id/documents', BookingController.getBookingDocuments);
+
+// GET /api/bookings/documents/:documentId/download - Download document
+router.get('/documents/:documentId/download', BookingController.downloadDocument);
 
 // Flight routes (admin only)
 // POST /api/bookings/flights - Add flight to booking (admin)

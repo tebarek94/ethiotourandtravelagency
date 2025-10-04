@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { 
   Calendar, 
   Users, 
@@ -8,7 +9,13 @@ import {
   Mail, 
   Phone, 
   MessageSquare,
-  CheckCircle
+  CheckCircle,
+  Upload,
+  Download,
+  FileText,
+  Image,
+  X,
+  Eye
 } from 'lucide-react';
 import { useApi } from '../hooks/useApi';
 import { packagesAPI, bookingsAPI } from '../services/api';
@@ -16,10 +23,24 @@ import { formatCurrency, getPackageDurationDisplay } from '../utils/helpers';
 import { BookingFormData } from '../types';
 import toast from 'react-hot-toast';
 
+interface UploadedFile {
+  id: string;
+  file: File;
+  type: 'passport' | 'visa' | 'photo';
+  preview?: string;
+}
+
 const BookingForm: React.FC = () => {
   const { packageId } = useParams<{ packageId: string }>();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([]);
+  const [previewFileState, setPreviewFile] = useState<UploadedFile | null>(null);
+  
+  const passportRef = useRef<HTMLInputElement>(null);
+  const visaRef = useRef<HTMLInputElement>(null);
+  const photoRef = useRef<HTMLInputElement>(null);
 
   const { data: packageData, loading: packageLoading } = useApi(
     () => packagesAPI.getById(parseInt(packageId!)),
@@ -35,16 +56,92 @@ const BookingForm: React.FC = () => {
 
   const travelers = watch('travelers', 1);
 
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>, type: 'passport' | 'visa' | 'photo') => {
+    const files = event.target.files;
+    if (!files || files.length === 0) return;
+
+    const file = files[0];
+    
+    // Validate file type
+    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf'];
+    if (!allowedTypes.includes(file.type)) {
+      toast.error(t('booking.fileTypes'));
+      return;
+    }
+
+    // Validate file size (5MB max)
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error(t('booking.maxFileSize'));
+      return;
+    }
+
+    const newFile: UploadedFile = {
+      id: Date.now().toString(),
+      file,
+      type,
+      preview: file.type.startsWith('image/') ? URL.createObjectURL(file) : undefined
+    };
+
+    // Remove existing file of same type
+    setUploadedFiles(prev => prev.filter(f => f.type !== type));
+    setUploadedFiles(prev => [...prev, newFile]);
+    
+    toast.success(t(`booking.${type}`) + ' ' + t('common.success'));
+  };
+
+  const removeFile = (fileId: string) => {
+    setUploadedFiles(prev => {
+      const file = prev.find(f => f.id === fileId);
+      if (file?.preview) {
+        URL.revokeObjectURL(file.preview);
+      }
+      return prev.filter(f => f.id !== fileId);
+    });
+  };
+
+  const downloadFile = (file: UploadedFile) => {
+    const url = file.preview || URL.createObjectURL(file.file);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = file.file.name;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    if (!file.preview) {
+      URL.revokeObjectURL(url);
+    }
+  };
+
+  const handlePreviewFile = (file: UploadedFile) => {
+    setPreviewFile(file);
+  };
+
   const onSubmit = async (data: BookingFormData) => {
     try {
       setIsSubmitting(true);
-      await bookingsAPI.create({
-        package_id: parseInt(packageId!),
-        travel_date: data.travel_date,
-        travelers: data.travelers,
+      
+      // Create FormData for file uploads
+      const formData = new FormData();
+      formData.append('package_id', packageId!);
+      formData.append('travel_date', data.travel_date);
+      formData.append('travelers', data.travelers.toString());
+      formData.append('name', data.name);
+      formData.append('email', data.email);
+      formData.append('phone', data.phone);
+      if (data.special_requests) {
+        formData.append('special_requests', data.special_requests);
+      }
+
+      // Append files
+      uploadedFiles.forEach((uploadedFile, index) => {
+        formData.append(`files`, uploadedFile.file);
+        formData.append(`file_types`, uploadedFile.type);
       });
+
+      await bookingsAPI.create(formData);
       toast.success('Booking created successfully!');
-      navigate('/bookings');
+      navigate('/packages');
     } catch (error: any) {
       toast.error(error.response?.data?.message || 'Failed to create booking. Please try again.');
     } finally {
@@ -83,7 +180,7 @@ const BookingForm: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <section className="bg-gradient-primary py-16">
+      <section className="bg-gradient-primary py-16 mt-16 lg:mt-20">
         <div className="container-custom text-white">
           <div className="flex items-center space-x-2 text-sm mb-6">
             <button
@@ -288,6 +385,160 @@ const BookingForm: React.FC = () => {
                     </div>
                   </div>
 
+                  {/* Document Upload Section */}
+                  <div className="pt-6 border-t border-gray-200">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                      Required Documents
+                    </h3>
+                    <p className="text-sm text-gray-600 mb-6">
+                      Please upload the following documents for visa processing. All files must be in JPG, PNG, or PDF format and under 5MB.
+                    </p>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      {/* Passport Upload */}
+                      <div className="space-y-3">
+                        <label className="block text-sm font-medium text-gray-700">
+                          Passport Copy *
+                        </label>
+                        <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hover:border-primary-500 transition-colors">
+                          <input
+                            ref={passportRef}
+                            type="file"
+                            accept=".jpg,.jpeg,.png,.pdf"
+                            onChange={(e) => handleFileUpload(e, 'passport')}
+                            className="hidden"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => passportRef.current?.click()}
+                            className="w-full flex flex-col items-center space-y-2 text-gray-600 hover:text-primary-600"
+                          >
+                            <Upload size={24} />
+                            <span className="text-sm">Upload Passport</span>
+                          </button>
+                        </div>
+                        {uploadedFiles.find(f => f.type === 'passport') && (
+                          <div className="text-xs text-green-600 flex items-center space-x-1">
+                            <CheckCircle size={12} />
+                            <span>Passport uploaded</span>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Visa Upload */}
+                      <div className="space-y-3">
+                        <label className="block text-sm font-medium text-gray-700">
+                          Visa Copy *
+                        </label>
+                        <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hover:border-primary-500 transition-colors">
+                          <input
+                            ref={visaRef}
+                            type="file"
+                            accept=".jpg,.jpeg,.png,.pdf"
+                            onChange={(e) => handleFileUpload(e, 'visa')}
+                            className="hidden"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => visaRef.current?.click()}
+                            className="w-full flex flex-col items-center space-y-2 text-gray-600 hover:text-primary-600"
+                          >
+                            <Upload size={24} />
+                            <span className="text-sm">Upload Visa</span>
+                          </button>
+                        </div>
+                        {uploadedFiles.find(f => f.type === 'visa') && (
+                          <div className="text-xs text-green-600 flex items-center space-x-1">
+                            <CheckCircle size={12} />
+                            <span>Visa uploaded</span>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Photo Upload */}
+                      <div className="space-y-3">
+                        <label className="block text-sm font-medium text-gray-700">
+                          Passport Photo *
+                        </label>
+                        <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hover:border-primary-500 transition-colors">
+                          <input
+                            ref={photoRef}
+                            type="file"
+                            accept=".jpg,.jpeg,.png"
+                            onChange={(e) => handleFileUpload(e, 'photo')}
+                            className="hidden"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => photoRef.current?.click()}
+                            className="w-full flex flex-col items-center space-y-2 text-gray-600 hover:text-primary-600"
+                          >
+                            <Upload size={24} />
+                            <span className="text-sm">Upload Photo</span>
+                          </button>
+                        </div>
+                        {uploadedFiles.find(f => f.type === 'photo') && (
+                          <div className="text-xs text-green-600 flex items-center space-x-1">
+                            <CheckCircle size={12} />
+                            <span>Photo uploaded</span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Uploaded Files List */}
+                    {uploadedFiles.length > 0 && (
+                      <div className="mt-6">
+                        <h4 className="text-sm font-medium text-gray-700 mb-3">Uploaded Files</h4>
+                        <div className="space-y-2">
+                          {uploadedFiles.map((file) => (
+                            <div key={file.id} className="flex items-center justify-between bg-gray-50 rounded-lg p-3">
+                              <div className="flex items-center space-x-3">
+                                {file.preview ? (
+                                  <Image size={20} className="text-blue-500" />
+                                ) : (
+                                  <FileText size={20} className="text-gray-500" />
+                                )}
+                                <div>
+                                  <p className="text-sm font-medium text-gray-900">{file.file.name}</p>
+                                  <p className="text-xs text-gray-500">
+                                    {file.type.charAt(0).toUpperCase() + file.type.slice(1)} • 
+                                    {(file.file.size / 1024 / 1024).toFixed(2)} MB
+                                  </p>
+                                </div>
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                {file.preview && (
+                                  <button
+                                    type="button"
+                                    onClick={() => handlePreviewFile(file)}
+                                    className="p-1 text-gray-400 hover:text-blue-500 transition-colors"
+                                  >
+                                    <Eye size={16} />
+                                  </button>
+                                )}
+                                <button
+                                  type="button"
+                                  onClick={() => downloadFile(file)}
+                                  className="p-1 text-gray-400 hover:text-green-500 transition-colors"
+                                >
+                                  <Download size={16} />
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => removeFile(file.id)}
+                                  className="p-1 text-gray-400 hover:text-red-500 transition-colors"
+                                >
+                                  <X size={16} />
+                                </button>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
                   {/* Submit Button */}
                   <div className="pt-6 border-t border-gray-200">
                     <button
@@ -365,6 +616,46 @@ const BookingForm: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* File Preview Modal */}
+      {previewFileState && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg max-w-4xl max-h-[90vh] overflow-hidden">
+            <div className="flex items-center justify-between p-4 border-b">
+              <h3 className="text-lg font-semibold text-gray-900">
+                {previewFileState.file.name}
+              </h3>
+              <button
+                onClick={() => setPreviewFile(null)}
+                className="p-2 text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <X size={24} />
+              </button>
+            </div>
+            <div className="p-4">
+              {previewFileState.preview ? (
+                <img
+                  src={previewFileState.preview}
+                  alt={previewFileState.file.name}
+                  className="max-w-full max-h-[70vh] object-contain mx-auto"
+                />
+              ) : (
+                <div className="text-center py-12">
+                  <FileText size={48} className="text-gray-400 mx-auto mb-4" />
+                  <p className="text-gray-600">PDF preview not available</p>
+                  <button
+                    onClick={() => downloadFile(previewFileState)}
+                    className="mt-4 btn-primary inline-flex items-center space-x-2"
+                  >
+                    <Download size={16} />
+                    <span>Download File</span>
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

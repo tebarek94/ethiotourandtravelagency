@@ -1,7 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
+import { LanguageProvider } from './contexts/LanguageContext';
 import Layout from './components/Layout/Layout';
+import './i18n';
 
 // Pages
 import Home from './pages/Home';
@@ -12,6 +14,7 @@ import Destinations from './pages/Destinations';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import Contact from './pages/Contact';
+import FAQ from './pages/FAQ';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
@@ -26,9 +29,10 @@ import AdminRoute from './components/AdminRoute';
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <Routes>
+    <LanguageProvider>
+      <AuthProvider>
+        <Router>
+          <Routes>
           {/* Public Routes */}
           <Route path="/" element={<Layout><Home /></Layout>} />
           <Route path="/about" element={<Layout><About /></Layout>} />
@@ -38,8 +42,10 @@ function App() {
           <Route path="/blog" element={<Layout><Blog /></Layout>} />
           <Route path="/blog/:slug" element={<Layout><BlogPost /></Layout>} />
           <Route path="/contact" element={<Layout><Contact /></Layout>} />
+          <Route path="/faq" element={<Layout><FAQ /></Layout>} />
           <Route path="/login" element={<Layout><Login /></Layout>} />
           <Route path="/register" element={<Layout><Register /></Layout>} />
+          <Route path="/booking/:packageId" element={<Layout><BookingForm /></Layout>} />
           
           {/* Protected Routes */}
           <Route 
@@ -58,14 +64,6 @@ function App() {
               </ProtectedRoute>
             } 
           />
-          <Route 
-            path="/booking/:packageId" 
-            element={
-              <ProtectedRoute>
-                <Layout><BookingForm /></Layout>
-              </ProtectedRoute>
-            } 
-          />
           
           {/* Admin Routes */}
           <Route 
@@ -79,9 +77,10 @@ function App() {
           
           {/* 404 Route */}
           <Route path="*" element={<Layout><NotFound /></Layout>} />
-        </Routes>
-      </Router>
-    </AuthProvider>
+          </Routes>
+        </Router>
+      </AuthProvider>
+    </LanguageProvider>
   );
 }
 

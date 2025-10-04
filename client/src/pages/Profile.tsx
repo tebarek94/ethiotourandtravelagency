@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { 
   User, 
   Mail, 
@@ -14,6 +15,7 @@ import { usersAPI } from '../services/api';
 import toast from 'react-hot-toast';
 
 const Profile: React.FC = () => {
+  const { t } = useTranslation();
   const { user, logout } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -35,10 +37,10 @@ const Profile: React.FC = () => {
     try {
       setIsLoading(true);
       await usersAPI.updateProfile(data);
-      toast.success('Profile updated successfully!');
+      toast.success(t('profile.personalInfo.success'));
       setIsEditing(false);
     } catch (error: any) {
-      toast.error(error.response?.data?.message || 'Failed to update profile. Please try again.');
+      toast.error(error.response?.data?.message || t('profile.personalInfo.error'));
     } finally {
       setIsLoading(false);
     }
@@ -76,13 +78,13 @@ const Profile: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <section className="bg-gradient-primary py-16">
+      <section className="bg-gradient-primary py-16 mt-16 lg:mt-20">
         <div className="container-custom text-white">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            My Profile
+            {t('profile.title')}
           </h1>
           <p className="text-xl text-gray-200">
-            Manage your account information and preferences
+            {t('profile.subtitle')}
           </p>
         </div>
       </section>

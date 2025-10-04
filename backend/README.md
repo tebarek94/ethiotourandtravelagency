@@ -1,4 +1,4 @@
-# Zad Travel Agency Backend API
+# Ethitour Travel Agency Backend API
 
 A production-ready backend API for a Travel & Umrah Agency website built with Node.js, Express, TypeScript, and MySQL.
 
@@ -276,4 +276,4 @@ This project is licensed under the MIT License.
 
 ## 📞 Support
 
-For support, email support@zadtravelagency.com or create an issue in the repository.
+For support, email support@ethitourtravelagency.com or create an issue in the repository.

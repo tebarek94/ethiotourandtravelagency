@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { 
   Calendar, 
   MapPin, 
@@ -16,6 +17,7 @@ import { bookingsAPI } from '../services/api';
 import { formatCurrency, formatDate, getBookingStatusInfo } from '../utils/helpers';
 
 const Bookings: React.FC = () => {
+  const { t } = useTranslation();
   const { data: bookings, loading } = useApi(() => bookingsAPI.getAll());
 
   const getStatusIcon = (status: string) => {
@@ -36,13 +38,13 @@ const Bookings: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <section className="bg-gradient-primary py-16">
+      <section className="bg-gradient-primary py-16 mt-16 lg:mt-20">
         <div className="container-custom text-white">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            My Bookings
+            {t('bookings.title')}
           </h1>
           <p className="text-xl text-gray-200">
-            Manage and track your Umrah bookings
+            {t('bookings.subtitle')}
           </p>
         </div>
       </section>
@@ -118,12 +120,12 @@ const Bookings: React.FC = () => {
                           className="btn-outline inline-flex items-center justify-center space-x-2"
                         >
                           <Eye size={16} />
-                          <span>View Details</span>
+                          <span>{t('bookings.actions.view')}</span>
                         </Link>
                         {booking.status === 'pending' && (
                           <button className="btn-outline text-red-600 border-red-600 hover:bg-red-50 inline-flex items-center justify-center space-x-2">
                             <XCircle size={16} />
-                            <span>Cancel</span>
+                            <span>{t('bookings.actions.cancel')}</span>
                           </button>
                         )}
                       </div>

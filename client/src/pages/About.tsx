@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { 
   Users, 
   Calendar, 
@@ -11,9 +12,11 @@ import {
 } from 'lucide-react';
 
 const About: React.FC = () => {
+  const { t } = useTranslation();
+  
   const stats = [
-    { number: '1000+', label: 'Umrah Travelers', icon: Users },
-    { number: '15+', label: 'Umrah Packages', icon: Calendar },
+    { number: '1000+', label: t('home.stats.pilgrims'), icon: Users },
+    { number: '15+', label: t('home.stats.packages'), icon: Calendar },
     { number: '98%', label: 'Satisfaction Rate', icon: Heart },
     { number: '24/7', label: 'Customer Support', icon: Clock },
   ];
@@ -21,23 +24,23 @@ const About: React.FC = () => {
   const values = [
     {
       icon: Shield,
-      title: 'Trust & Reliability',
-      description: 'We are committed to providing secure and reliable travel services with comprehensive insurance coverage.'
+      title: t('about.values.integrity.title'),
+      description: t('about.values.integrity.description')
     },
     {
       icon: Heart,
-      title: 'Spiritual Focus',
-      description: 'Every package is designed to enhance your spiritual journey and connection with the holy cities.'
+      title: t('about.values.compassion.title'),
+      description: t('about.values.compassion.description')
     },
     {
       icon: Globe,
-      title: 'Cultural Sensitivity',
-      description: 'We understand and respect the cultural and religious significance of your pilgrimage.'
+      title: t('about.values.excellence.title'),
+      description: t('about.values.excellence.description')
     },
     {
       icon: Award,
-      title: 'Excellence',
-      description: 'We strive for excellence in every aspect of our service, from planning to execution.'
+      title: t('about.values.reliability.title'),
+      description: t('about.values.reliability.description')
     }
   ];
 
@@ -88,14 +91,13 @@ const About: React.FC = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-primary py-20">
+      <section className="bg-gradient-primary py-20 mt-16 lg:mt-20">
         <div className="container-custom text-center text-white">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            About EthioTour Travel Agency
+            {t('about.title')}
           </h1>
           <p className="text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
-            Your trusted partner for blessed journeys to the holy cities. 
-            We provide authentic, affordable, and spiritually enriching Umrah experiences.
+            {t('about.subtitle')}
           </p>
         </div>
       </section>
@@ -105,11 +107,9 @@ const About: React.FC = () => {
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Mission</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">{t('about.mission.title')}</h2>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                We believe every pilgrim deserves a blessed and comfortable Umrah. Founded in 2025, 
-                our mission is to provide authentic, affordable, and spiritually enriching journeys 
-                with hotels near the Haramain, guided Ziyarat, and 24/7 support.
+                {t('about.mission.description')}
               </p>
               <div className="space-y-4">
                 <div className="flex items-start space-x-3">
@@ -137,11 +137,9 @@ const About: React.FC = () => {
             </div>
             <div className="relative">
               <div className="bg-gradient-to-br from-primary-100 to-secondary-100 rounded-2xl p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">{t('about.vision.title')}</h3>
                 <p className="text-lg text-gray-700 leading-relaxed">
-                  To become the leading Umrah travel agency in Ethiopia, known for our commitment to 
-                  spiritual excellence, customer satisfaction, and making the sacred journey accessible 
-                  to all Muslims seeking to perform Umrah.
+                  {t('about.vision.description')}
                 </p>
               </div>
             </div>
