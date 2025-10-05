@@ -90,10 +90,10 @@ The API uses the following MySQL tables:
    Create a `.env` file in the root directory:
    ```env
    # Database Configuration
-   DB_HOST=localhost
-   DB_USER=root
+   DB_HOST=your host
+   DB_USER=name
    DB_PASS=your_password
-   DB_NAME=zad_travel_agency
+   DB_NAME=databasename
 
    # JWT Configuration
    JWT_SECRET=your_super_secret_key
@@ -108,7 +108,7 @@ The API uses the following MySQL tables:
    ```
 
 4. **Database Setup**
-   - Create a MySQL database named `zad_travel_agency`
+   - Create a MySQL database named `ethiotour_travel_agency`
    - The application will automatically create all tables on first run
 
 5. **Start the development server**
@@ -209,59 +209,8 @@ Authorization: Bearer <your_jwt_token>
 }
 ```
 
-## 🧪 Testing the API
 
-### Health Check
-```bash
-curl http://localhost:5000/health
-```
-
-### API Documentation
-```bash
-curl http://localhost:5000/api
-```
-
-### Register a User
-```bash
-curl -X POST http://localhost:5000/api/auth/register \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "John Doe",
-    "email": "john@example.com",
-    "password": "password123"
-  }'
-```
-
-### Login
-```bash
-curl -X POST http://localhost:5000/api/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{
-    "email": "john@example.com",
-    "password": "password123"
-  }'
-```
-
-## 🚀 Deployment
-
-### Environment Variables for Production
-```env
-NODE_ENV=production
-DB_HOST=your_production_db_host
-DB_USER=your_production_db_user
-DB_PASS=your_production_db_password
-DB_NAME=zad_travel_agency_prod
-JWT_SECRET=your_production_jwt_secret
-PORT=5000
-CORS_ORIGIN=https://yourdomain.com
-```
-
-### Build and Deploy
-```bash
-npm run build
-npm start
-```
-
+  
 ## 📄 License
 
 This project is licensed under the MIT License.
