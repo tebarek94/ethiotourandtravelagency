@@ -45,41 +45,41 @@ const Header: React.FC = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-lg'
-          : 'bg-white/90 backdrop-blur-sm'
+          ? 'bg-white/95 backdrop-blur-xl shadow-2xl border-b border-neutral-200/50'
+          : 'bg-white/80 backdrop-blur-lg shadow-lg'
       }`}
     >
       <div className="container-custom">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center">
+          <Link to="/" className="flex items-center space-x-3 group">
+            <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
               <span className="text-white font-bold text-xl">E</span>
             </div>
             <div className="hidden sm:block">
-              <h1 className="text-xl lg:text-2xl font-bold text-gray-900">
-                EthioTours
+              <h1 className="text-xl lg:text-2xl font-bold text-neutral-900 group-hover:text-primary-600 transition-colors duration-300">
+                EthioTour
               </h1>
-              <p className="text-xs text-gray-600">Travel Agency</p>
+              <p className="text-xs text-neutral-600 font-medium">Travel</p>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-6 rtl:space-x-reverse">
+          <nav className="hidden lg:flex items-center space-x-2 rtl:space-x-reverse">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`flex items-center space-x-1 rtl:space-x-reverse px-3 py-2 rounded-lg transition-colors duration-200 ${
+                className={`flex items-center space-x-2 rtl:space-x-reverse px-4 py-2.5 rounded-xl transition-all duration-300 font-medium ${
                   isActive(item.path)
-                    ? 'text-primary-600 bg-primary-50'
-                    : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
+                    ? 'text-primary-600 bg-primary-50 shadow-sm'
+                    : 'text-neutral-700 hover:text-primary-600 hover:bg-primary-50/50'
                 }`}
               >
-                {item.icon && <item.icon size={16} />}
-                <span className="font-medium">{item.name}</span>
+                {item.icon && <item.icon size={18} />}
+                <span>{item.name}</span>
               </Link>
             ))}
           </nav>
@@ -148,9 +148,9 @@ const Header: React.FC = () => {
             {/* Book Umrah Button */}
             <Link
               to="/packages"
-              className="btn-secondary text-sm hidden sm:inline-flex items-center space-x-1 rtl:space-x-reverse"
+              className="btn-primary text-sm hidden sm:inline-flex items-center space-x-2 rtl:space-x-reverse"
             >
-              <Calendar size={16} />
+              <Calendar size={18} />
               <span>{t('package.bookNow')}</span>
             </Link>
 

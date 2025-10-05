@@ -10,7 +10,7 @@ const Login: React.FC = () => {
   const { t } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const { login } = useAuth();
+  const { login, user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -26,7 +26,18 @@ const Login: React.FC = () => {
     try {
       setIsLoading(true);
       await login(data.email, data.password);
-      navigate(from, { replace: true });
+      
+      // Redirect based on role and intended destination
+      if (from === '/admin/dashboard' || from.includes('/admin')) {
+        // If trying to access admin area, redirect to admin dashboard
+        navigate('/admin/dashboard', { replace: true });
+      } else if (user?.role === 'admin') {
+        // If admin user, redirect to admin dashboard
+        navigate('/admin/dashboard', { replace: true });
+      } else {
+        // Regular user, redirect to intended page or home
+        navigate(from, { replace: true });
+      }
     } catch (error) {
       // Error is handled by the auth context
     } finally {

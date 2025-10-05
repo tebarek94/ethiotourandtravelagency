@@ -3,16 +3,30 @@ import { User, CreateUserData } from '../types';
 
 export class UserModel {
   static async create(userData: CreateUserData): Promise<User> {
-    const { name, email, phone, password_hash, role = 'user' } = userData;
-    
-    const [result] = await pool.execute(
-      'INSERT INTO users (name, email, phone, password_hash, role) VALUES (?, ?, ?, ?, ?)',
-      [name, email, phone, password_hash, role]
-    );
+    try {
+      const { name, email, phone, password_hash, role = 'user' } = userData;
+      
+      console.log('UserModel.create called with:', { name, email, phone, role, password_hash: '[HIDDEN]' });
+      
+      const [result] = await pool.execute(
+        'INSERT INTO users (name, email, phone, password_hash, role) VALUES (?, ?, ?, ?, ?)',
+        [name, email, phone, password_hash, role]
+      );
 
-    const insertResult = result as any;
-    const newUser = await this.findById(insertResult.insertId);
-    return newUser!;
+      const insertResult = result as any;
+      console.log('User inserted with ID:', insertResult.insertId);
+      
+      const newUser = await this.findById(insertResult.insertId);
+      if (!newUser) {
+        throw new Error('Failed to retrieve created user');
+      }
+      
+      console.log('User retrieved successfully:', { user_id: newUser.user_id, email: newUser.email });
+      return newUser;
+    } catch (error) {
+      console.error('UserModel.create error:', error);
+      throw error;
+    }
   }
 
   static async findById(id: number): Promise<User | null> {

@@ -48,7 +48,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         localStorage.setItem('token', authToken);
         localStorage.setItem('user', JSON.stringify(userData));
         
-        toast.success('Login successful!');
+        toast.success(`Welcome back, ${userData.name}!`);
       }
     } catch (error: any) {
       const message = error.response?.data?.message || 'Login failed. Please try again.';

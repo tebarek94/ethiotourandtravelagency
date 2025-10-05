@@ -653,6 +653,7 @@
     "pageNotFound": "ገጽ አልተገኘም",
     "pageNotFoundMessage": "የሚፈልጉት ገጽ የለም።",
     "goHome": "ወደ ቤት ሂድ",
+    "goBack": "ወደ ኋላ ተመለስ",
     "serverError": "የሰርቨር ስህተት",
     "serverErrorMessage": "አንድ ነገር ተሳስቷል። እባክዎ ቆይተው እንደገና ይሞክሩ።",
     "networkError": "የኔትዎርክ ስህተት",

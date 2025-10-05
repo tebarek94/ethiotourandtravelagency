@@ -12,7 +12,9 @@ import {
   Inquiry,
   CreateInquiryRequest,
   Partner,
-  User
+  User,
+  CreatePackageRequest,
+  CreateArticleRequest
 } from '../types';
 
 // Create axios instance
@@ -80,6 +82,21 @@ export const packagesAPI = {
     const response: AxiosResponse<ApiResponse<Package[]>> = await api.get(`/packages?type=${type}`);
     return response.data;
   },
+
+  createPackage: async (packageData: CreatePackageRequest): Promise<ApiResponse<Package>> => {
+    const response: AxiosResponse<ApiResponse<Package>> = await api.post('/packages', packageData);
+    return response.data;
+  },
+
+  updatePackage: async (id: number, packageData: CreatePackageRequest): Promise<ApiResponse<Package>> => {
+    const response: AxiosResponse<ApiResponse<Package>> = await api.put(`/packages/${id}`, packageData);
+    return response.data;
+  },
+
+  deletePackage: async (id: number): Promise<ApiResponse<void>> => {
+    const response: AxiosResponse<ApiResponse<void>> = await api.delete(`/packages/${id}`);
+    return response.data;
+  },
 };
 
 // Destinations API
@@ -133,6 +150,11 @@ export const bookingsAPI = {
     return response.data;
   },
 
+  cancel: async (id: number): Promise<ApiResponse<Booking>> => {
+    const response: AxiosResponse<ApiResponse<Booking>> = await api.patch(`/bookings/${id}/cancel`);
+    return response.data;
+  },
+
   getDocuments: async (bookingId: number): Promise<ApiResponse<any[]>> => {
     const response: AxiosResponse<ApiResponse<any[]>> = await api.get(`/bookings/${bookingId}/documents`);
     return response.data;
@@ -160,6 +182,29 @@ export const articlesAPI = {
 
   getBySlug: async (slug: string): Promise<ApiResponse<Article>> => {
     const response: AxiosResponse<ApiResponse<Article>> = await api.get(`/articles/slug/${slug}`);
+    return response.data;
+  },
+
+  createArticle: async (articleData: CreateArticleRequest | FormData): Promise<ApiResponse<Article>> => {
+    const response: AxiosResponse<ApiResponse<Article>> = await api.post('/articles', articleData, {
+      headers: {
+        'Content-Type': articleData instanceof FormData ? 'multipart/form-data' : 'application/json'
+      }
+    });
+    return response.data;
+  },
+
+  updateArticle: async (id: number, articleData: CreateArticleRequest | FormData): Promise<ApiResponse<Article>> => {
+    const response: AxiosResponse<ApiResponse<Article>> = await api.put(`/articles/${id}`, articleData, {
+      headers: {
+        'Content-Type': articleData instanceof FormData ? 'multipart/form-data' : 'application/json'
+      }
+    });
+    return response.data;
+  },
+
+  deleteArticle: async (id: number): Promise<ApiResponse<void>> => {
+    const response: AxiosResponse<ApiResponse<void>> = await api.delete(`/articles/${id}`);
     return response.data;
   },
 };

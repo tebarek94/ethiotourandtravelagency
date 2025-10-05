@@ -631,6 +631,7 @@
     "pageNotFound": "Fuula hin argamne",
     "pageNotFoundMessage": "Fuula barbaaddu hin jiru.",
     "goHome": "Mana deebi'i",
+    "goBack": "Duubatti deebi'i",
     "serverError": "Dogoggora server",
     "serverErrorMessage": "Wanti tokko dogoggora. Maaloo booda irra deebi'i.",
     "networkError": "Dogoggora network",

@@ -128,13 +128,53 @@ const PackageDetail: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <section className="bg-gradient-primary py-16 mt-16 lg:mt-20">
-        <div className="container-custom text-white">
+      {/* Hero Section with Kaaba Background */}
+      <section className="relative py-16 mt-16 lg:mt-20 overflow-hidden">
+        {/* Kaaba Background Image */}
+        <div className="absolute inset-0 w-full h-full">
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: `url('https://images.unsplash.com/photo-1704104501136-8f35402af395?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxrYWFiYSUyMG1lY2NhJTIwdmlkZW8lMjBmb290YWdlfGVufDF8fHx8MTc1OTYyODEwM3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral')`
+            }}
+          ></div>
+          
+          {/* Enhanced Overlay for Better Text Readability */}
+          <div className="absolute inset-0 bg-gradient-to-br from-primary-900/70 via-primary-800/60 to-secondary-800/70"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30"></div>
+          
+          {/* Subtle Islamic Pattern Overlay */}
+          <div className="absolute inset-0 opacity-15">
+            <div className="absolute top-20 left-20 w-32 h-32 bg-secondary-300/20 rounded-full blur-xl animate-pulse"></div>
+            <div className="absolute top-40 right-32 w-24 h-24 bg-secondary-400/25 rounded-full blur-lg animate-pulse" style={{animationDelay: '1s'}}></div>
+            <div className="absolute bottom-32 left-1/3 w-40 h-40 bg-secondary-300/15 rounded-full blur-2xl animate-pulse" style={{animationDelay: '2s'}}></div>
+            <div className="absolute bottom-20 right-20 w-28 h-28 bg-secondary-400/20 rounded-full blur-xl animate-pulse" style={{animationDelay: '3s'}}></div>
+          </div>
+        </div>
+        
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Floating particles with different animations */}
+          <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-white/20 rounded-full animate-pulse" style={{animationDelay: '0s'}}></div>
+          <div className="absolute top-1/3 right-1/3 w-1 h-1 bg-secondary-300/40 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
+          <div className="absolute bottom-1/3 left-1/3 w-3 h-3 bg-white/10 rounded-full animate-pulse" style={{animationDelay: '2s'}}></div>
+          <div className="absolute top-2/3 right-1/4 w-1.5 h-1.5 bg-secondary-300/30 rounded-full animate-pulse" style={{animationDelay: '3s'}}></div>
+          <div className="absolute top-1/2 left-1/6 w-2 h-2 bg-white/15 rounded-full animate-pulse" style={{animationDelay: '4s'}}></div>
+          <div className="absolute bottom-1/4 right-1/6 w-1 h-1 bg-secondary-300/35 rounded-full animate-pulse" style={{animationDelay: '5s'}}></div>
+          
+          {/* Geometric shapes */}
+          <div className="absolute top-20 left-20 w-16 h-16 border border-white/10 rotate-45 animate-spin" style={{animationDuration: '20s'}}></div>
+          <div className="absolute bottom-20 right-20 w-12 h-12 border border-secondary-300/20 rounded-full animate-pulse"></div>
+          <div className="absolute top-1/2 right-20 w-8 h-8 border border-white/15 rotate-12 animate-spin" style={{animationDuration: '15s', animationDirection: 'reverse'}}></div>
+        </div>
+        
+        {/* Content */}
+        <div className="relative z-10 container-custom text-white">
           <div className="flex items-center justify-between mb-4">
             <button
               onClick={() => navigate(-1)}
-              className="flex items-center space-x-2 text-gray-200 hover:text-white transition-colors"
+              className="flex items-center space-x-2 text-white/90 hover:text-white transition-colors"
             >
               <ArrowLeft size={20} />
               <span>Back</span>
@@ -145,14 +185,14 @@ const PackageDetail: React.FC = () => {
                 className={`p-2 rounded-lg transition-colors ${
                   isFavorite 
                     ? 'bg-red-500/20 text-red-300' 
-                    : 'bg-white/10 text-gray-200 hover:bg-white/20'
+                    : 'bg-white/10 text-white/90 hover:bg-white/20'
                 }`}
               >
                 <Heart size={20} className={isFavorite ? 'fill-current' : ''} />
               </button>
               <button
                 onClick={handleShare}
-                className="p-2 rounded-lg bg-white/10 text-gray-200 hover:bg-white/20 transition-colors"
+                className="p-2 rounded-lg bg-white/10 text-white/90 hover:bg-white/20 transition-colors"
               >
                 <Share2 size={20} />
               </button>
@@ -185,11 +225,11 @@ const PackageDetail: React.FC = () => {
                 </div>
               </div>
               
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">
+              <h1 className="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">
                 {pkg.name}
               </h1>
               
-              <p className="text-xl text-gray-200 mb-6 max-w-3xl">
+              <p className="text-xl text-white/90 mb-6 max-w-3xl drop-shadow-md">
                 {pkg.description}
               </p>
               
@@ -212,14 +252,14 @@ const PackageDetail: React.FC = () => {
             <div className="hidden lg:block ml-8">
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
                 <div className="text-center mb-4">
-                  <div className="text-3xl font-bold text-secondary-300">
+                  <div className="text-3xl font-bold text-secondary-300 drop-shadow-lg">
                     {formatCurrency(pkg.price)}
                   </div>
-                  <div className="text-gray-300">per person</div>
+                  <div className="text-white/80">per person</div>
                 </div>
                 <button
                   onClick={handleBookNow}
-                  className="btn-secondary w-full inline-flex items-center justify-center space-x-2"
+                  className="btn-secondary w-full inline-flex items-center justify-center space-x-2 shadow-2xl"
                 >
                   <Calendar size={20} />
                   <span>{t('packages.details.bookNow')}</span>

@@ -19,6 +19,7 @@ export interface RegisterRequest {
   email: string;
   phone?: string;
   password: string;
+  role?: 'admin' | 'user';
 }
 
 export interface AuthResponse {
@@ -44,6 +45,16 @@ export interface Package {
   updated_at: string;
 }
 
+export interface CreatePackageRequest {
+  name: string;
+  description?: string;
+  duration_days: number;
+  nights: number;
+  price: number;
+  type: 'umrah' | 'hajj' | 'tour' | 'custom';
+  rating?: number;
+}
+
 export interface Destination {
   destination_id: number;
   name: string;
@@ -64,6 +75,9 @@ export interface Booking {
   created_at: string;
   updated_at: string;
   package_name?: string;
+  traveler_name?: string;
+  traveler_email?: string;
+  traveler_phone?: string;
 }
 
 export interface CreateBookingRequest {
@@ -80,8 +94,17 @@ export interface Article {
   content: string;
   author: string;
   published_date: string;
+  image_url?: string;
   created_at: string;
   updated_at: string;
+}
+
+export interface CreateArticleRequest {
+  title: string;
+  slug: string;
+  content: string;
+  author: string;
+  image?: File;
 }
 
 // Inquiry Types

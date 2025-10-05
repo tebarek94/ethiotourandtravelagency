@@ -33,8 +33,12 @@ export const validateUserRegistration = [
     .withMessage('Password must be at least 6 characters long'),
   body('phone')
     .optional()
-    .isMobilePhone('any')
-    .withMessage('Please provide a valid phone number'),
+    .isLength({ min: 10, max: 15 })
+    .withMessage('Phone number must be between 10 and 15 characters'),
+  body('role')
+    .optional()
+    .isIn(['user', 'admin'])
+    .withMessage('Role must be either user or admin'),
   handleValidationErrors
 ];
 
@@ -62,8 +66,8 @@ export const validateUserUpdate = [
     .withMessage('Please provide a valid email'),
   body('phone')
     .optional()
-    .isMobilePhone('any')
-    .withMessage('Please provide a valid phone number'),
+    .isLength({ min: 10, max: 15 })
+    .withMessage('Phone number must be between 10 and 15 characters'),
   handleValidationErrors
 ];
 
@@ -197,8 +201,8 @@ export const validateInquiry = [
     .withMessage('Please provide a valid email'),
   body('phone')
     .optional()
-    .isMobilePhone('any')
-    .withMessage('Please provide a valid phone number'),
+    .isLength({ min: 10, max: 15 })
+    .withMessage('Phone number must be between 10 and 15 characters'),
   body('message')
     .trim()
     .isLength({ min: 10, max: 1000 })

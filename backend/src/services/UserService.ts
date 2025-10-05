@@ -6,31 +6,40 @@ import { createError } from '../middlewares/errorHandler';
 
 export class UserService {
   static async register(userData: CreateUserRequest): Promise<{ user: User; token: string }> {
-    // Check if email already exists
-    const existingUser = await UserModel.findByEmail(userData.email);
-    if (existingUser) {
-      throw createError('Email already registered', 400);
+    try {
+      console.log('UserService.register called with:', { ...userData, password: '[HIDDEN]' });
+      
+      // Check if email already exists
+      const existingUser = await UserModel.findByEmail(userData.email);
+      if (existingUser) {
+        throw createError('Email already registered', 400);
+      }
+
+      // Hash password
+      const saltRounds = 12;
+      const password_hash = await bcrypt.hash(userData.password, saltRounds);
+
+      // Create user
+      const userDataWithHash: CreateUserData = {
+        name: userData.name,
+        email: userData.email,
+        phone: userData.phone,
+        password_hash,
+        role: userData.role || 'user'
+      };
+      
+      console.log('Creating user with data:', { ...userDataWithHash, password_hash: '[HIDDEN]' });
+      const user = await UserModel.create(userDataWithHash);
+      console.log('User created successfully:', { user_id: user.user_id, email: user.email });
+
+      // Generate JWT token
+      const token = this.generateToken(user);
+
+      return { user, token };
+    } catch (error) {
+      console.error('UserService.register error:', error);
+      throw error;
     }
-
-    // Hash password
-    const saltRounds = 12;
-    const password_hash = await bcrypt.hash(userData.password, saltRounds);
-
-    // Create user
-    const userDataWithHash: CreateUserData = {
-      name: userData.name,
-      email: userData.email,
-      phone: userData.phone,
-      password_hash,
-      role: userData.role || 'user'
-    };
-    
-    const user = await UserModel.create(userDataWithHash);
-
-    // Generate JWT token
-    const token = this.generateToken(user);
-
-    return { user, token };
   }
 
   static async login(loginData: LoginRequest): Promise<{ user: User; token: string }> {

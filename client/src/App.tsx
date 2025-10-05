@@ -19,9 +19,10 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
 import Bookings from './pages/Bookings';
+import BookingDetail from './pages/BookingDetail';
 import BookingForm from './pages/BookingForm';
-import NotFound from './pages/NotFound';
 import AdminDashboard from './pages/AdminDashboard';
+import NotFound from './pages/NotFound';
 
 // Protected Route Component
 import ProtectedRoute from './components/ProtectedRoute';
@@ -31,7 +32,7 @@ function App() {
   return (
     <LanguageProvider>
       <AuthProvider>
-        <Router>
+        <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
           <Routes>
           {/* Public Routes */}
           <Route path="/" element={<Layout><Home /></Layout>} />
@@ -64,10 +65,18 @@ function App() {
               </ProtectedRoute>
             } 
           />
+          <Route 
+            path="/bookings/:id" 
+            element={
+              <ProtectedRoute>
+                <Layout><BookingDetail /></Layout>
+              </ProtectedRoute>
+            } 
+          />
           
           {/* Admin Routes */}
           <Route 
-            path="/admin" 
+            path="/admin/dashboard" 
             element={
               <AdminRoute>
                 <AdminDashboard />

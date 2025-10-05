@@ -631,6 +631,7 @@
     "pageNotFound": "الصفحة غير موجودة",
     "pageNotFoundMessage": "الصفحة التي تبحث عنها غير موجودة.",
     "goHome": "العودة للرئيسية",
+    "goBack": "العودة للخلف",
     "serverError": "خطأ في الخادم",
     "serverErrorMessage": "حدث خطأ ما. يرجى المحاولة مرة أخرى لاحقاً.",
     "networkError": "خطأ في الشبكة",
